@@ -1,0 +1,1435 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Koby Mashiach — Senior Mobile Developer</title>
+<meta name="description" content="Koby Mashiach — Senior Mobile Developer, Flutter & Dart. Seven years shipping consumer apps, enterprise field-operations apps and AI-powered products. Open to senior mobile roles.">
+<meta name="theme-color" content="#07080a">
+<meta property="og:title" content="Koby Mashiach — Senior Mobile Developer">
+<meta property="og:description" content="Flutter & Dart. Consumer apps, enterprise field apps, AI products — architected, built and shipped end to end. Open to senior mobile roles.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2307080a'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Georgia,serif' font-style='italic' font-size='34' fill='%235eead4'%3Ek%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Heebo:wght@300;400;500;600;700&family=Frank+Ruhl+Libre:wght@400;500&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Geist', 'Heebo', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          mono: ['"Geist Mono"', 'ui-monospace', 'monospace'],
+          serif: ['"Instrument Serif"', 'Georgia', 'serif'],
+        },
+        colors: {
+          ink: { 950: '#07080a', 900: '#0b0c0f', 850: '#0f1114', 800: '#14161a', 700: '#1c1f24', 600: '#2a2e35' },
+          fog: { 100: '#eceef1', 300: '#b9bec7', 400: '#8d939d', 500: '#646a74' },
+          neon: { cyan: '#5eead4', sky: '#67d4ff', blue: '#5b8cff' },
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  :root {
+    --bg: #07080a;
+    --line: rgba(255,255,255,.07);
+    --line-strong: rgba(255,255,255,.12);
+    --cyan: #5eead4;
+    --sky: #67d4ff;
+    --blue: #5b8cff;
+    --ease-out: cubic-bezier(.22,1,.36,1);
+  }
+  html { background: var(--bg); color-scheme: dark; }
+  body { background: var(--bg); color: #eceef1; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; overflow-x: hidden; }
+  ::selection { background: rgba(94,234,212,.25); color: #fff; }
+
+  /* film grain + faint grid: the "texture" that keeps black from feeling flat */
+  .grain::before {
+    content: ""; position: fixed; inset: -50%; z-index: 60; pointer-events: none; opacity: .045;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .gridlines {
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,.035) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 75%);
+  }
+  .aurora {
+    background:
+      radial-gradient(40% 50% at 18% 10%, rgba(94,234,212,.13), transparent 70%),
+      radial-gradient(35% 45% at 85% 0%, rgba(91,140,255,.14), transparent 70%);
+  }
+
+  .hairline { border-color: var(--line); }
+  .text-gradient {
+    background: linear-gradient(100deg, #fff 0%, #cfeff0 40%, var(--cyan) 70%, var(--sky) 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .serif-i { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-weight: 400; letter-spacing: -.01em; }
+  .label { font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #8d939d; }
+
+  /* Hebrew: its own type pair, gentler tracking, mirrored arrows */
+  html[lang="he"] body { font-family: 'Heebo', 'Geist', system-ui, sans-serif; }
+  html[lang="he"] .serif-i { font-family: 'Frank Ruhl Libre', Georgia, serif; font-style: normal; font-weight: 500; letter-spacing: 0; }
+  html[lang="he"] .label { font-family: 'Heebo', sans-serif; font-size: 12.5px; letter-spacing: .02em; font-weight: 500; }
+  html[lang="he"] .font-mono { font-family: 'Geist Mono', 'Heebo', monospace; font-weight: 500; }
+  html[lang="he"] .chip { font-size: 13px; letter-spacing: .02em; }
+  html[lang="he"] [class*="tracking-[-0.0"] { letter-spacing: -0.012em; }
+  html[lang="he"] h1, html[lang="he"] h2 { line-height: 1.08; }
+  [dir="rtl"] .flip { transform: scaleX(-1); }
+  .ltr { direction: ltr; unicode-bidi: isolate; }
+
+  /* cards that catch the cursor */
+  .glow { position: relative; isolation: isolate; }
+  .glow::after {
+    content: ""; position: absolute; inset: 0; border-radius: inherit; z-index: -1; opacity: 0; transition: opacity .4s var(--ease-out);
+    background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(94,234,212,.09), transparent 45%);
+  }
+  .glow:hover::after { opacity: 1; }
+
+  /* buttons */
+  .btn { display: inline-flex; align-items: center; gap: .55rem; height: 44px; padding: 0 1.15rem; border-radius: 999px; font-size: 14px; font-weight: 500; transition: transform .2s var(--ease-out), background-color .2s, border-color .2s, color .2s; white-space: nowrap; }
+  .btn:active { transform: scale(.97); }
+  .btn-primary { background: #eceef1; color: #07080a; }
+  .btn-primary:hover { background: #fff; }
+  .btn-ghost { border: 1px solid var(--line-strong); color: #eceef1; background: rgba(255,255,255,.02); }
+  .btn-ghost:hover { border-color: rgba(94,234,212,.45); background: rgba(94,234,212,.06); }
+  .btn-disabled { border: 1px dashed var(--line-strong); color: #646a74; cursor: default; white-space: normal; height: auto; min-height: 44px; padding-top: .55rem; padding-bottom: .55rem; border-radius: 22px; }
+
+  :focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; border-radius: 8px; }
+
+  /* language switch */
+  .lang { display: inline-flex; padding: 3px; border-radius: 999px; border: 1px solid var(--line-strong); background: rgba(255,255,255,.02); }
+  .lang button { min-width: 38px; height: 30px; padding: 0 .55rem; border-radius: 999px; font-size: 12.5px; font-weight: 500; color: #8d939d; transition: background-color .25s var(--ease-out), color .25s; }
+  .lang button[aria-pressed="true"] { background: #eceef1; color: #07080a; }
+  .lang button:not([aria-pressed="true"]):hover { color: #fff; }
+
+  /* device frames */
+  .phone {
+    position: relative; aspect-ratio: 1080 / 2340; border-radius: 2.4rem; padding: 9px;
+    background: linear-gradient(160deg, #2a2d33 0%, #111317 35%, #0b0c0f 100%);
+    box-shadow: 0 0 0 1px rgba(255,255,255,.08) inset, 0 1px 0 rgba(255,255,255,.12) inset, 0 40px 80px -30px rgba(0,0,0,.9), 0 0 0 1px #000;
+  }
+  .phone .screen { position: relative; width: 100%; height: 100%; border-radius: 1.95rem; overflow: hidden; background: #0f1114; }
+  .phone .screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+  .phone .btn-side { position: absolute; right: -2px; top: 22%; width: 3px; height: 12%; border-radius: 3px; background: #24272c; }
+
+  .laptop .lid { padding: 8px 8px 10px; border-radius: 14px 14px 4px 4px; background: linear-gradient(160deg, #2a2d33 0%, #111317 35%, #0b0c0f 100%); box-shadow: 0 0 0 1px rgba(255,255,255,.08) inset, 0 1px 0 rgba(255,255,255,.12) inset, 0 0 0 1px #000; }
+  .laptop .screen { aspect-ratio: 16 / 10; border-radius: 4px; overflow: hidden; background: #0f1114; }
+  .laptop .screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+  .laptop .base { position: relative; height: 12px; margin: 0 -7%; border-radius: 2px 2px 12px 12px; background: linear-gradient(180deg, #34373e 0%, #1a1c20 60%, #0d0e11 100%); box-shadow: 0 0 0 1px rgba(0,0,0,.6), 0 40px 80px -30px rgba(0,0,0,.9); }
+  .laptop .base::before { content: ''; position: absolute; left: 50%; top: 0; width: 16%; height: 5px; transform: translateX(-50%); border-radius: 0 0 6px 6px; background: #121418; }
+  .browser { border-radius: 14px; overflow: hidden; background: #0f1114; border: 1px solid var(--line-strong); box-shadow: 0 40px 80px -30px rgba(0,0,0,.9); }
+  .browser .bar { display: flex; align-items: center; gap: 6px; height: 34px; padding: 0 12px; border-bottom: 1px solid var(--line); background: #14161a; direction: ltr; }
+  .browser .dot { width: 9px; height: 9px; border-radius: 50%; background: #2a2e35; }
+  .browser .url { margin-left: 10px; flex: 1; max-width: 340px; height: 20px; border-radius: 6px; background: #0b0c0f; font: 500 10.5px 'Geist Mono', monospace; color: #646a74; display: flex; align-items: center; padding: 0 10px; overflow: hidden; white-space: nowrap; }
+  .browser .screen { aspect-ratio: 16 / 10; }
+  .browser .screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+
+  /* empty slot shown until a real screenshot file exists */
+  .slot { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .6rem; padding: 1rem; text-align: center;
+    background:
+      repeating-linear-gradient(135deg, rgba(255,255,255,.018) 0 10px, transparent 10px 20px),
+      radial-gradient(80% 60% at 50% 0%, rgba(94,234,212,.08), transparent 70%), #0d0f12; }
+  .slot code { font: 500 10px 'Geist Mono', monospace; color: #646a74; word-break: break-all; }
+
+  /* restricted screens: a sealed stack of blank devices */
+  .sealed { background:
+      repeating-linear-gradient(135deg, rgba(255,255,255,.022) 0 9px, transparent 9px 18px),
+      linear-gradient(180deg, #111317, #0b0c0f); }
+
+  /* horizontal gallery */
+  .rail { display: grid; grid-auto-flow: column; gap: 1.25rem; overflow-x: auto; scroll-snap-type: x mandatory; padding: 1rem 0 2rem; scrollbar-width: thin; scrollbar-color: #2a2e35 transparent; overscroll-behavior-x: contain; }
+  .rail > * { scroll-snap-align: start; }
+  .rail::-webkit-scrollbar { height: 6px; }
+  .rail::-webkit-scrollbar-thumb { background: #2a2e35; border-radius: 6px; }
+
+  /* marquee (always runs left-to-right, also in Hebrew) */
+  .marquee { direction: ltr; mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent); }
+  .marquee-track { display: flex; width: max-content; animation: marquee 48s linear infinite; }
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+
+  /* reveal on scroll */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .8s var(--ease-out), transform .8s var(--ease-out); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* work index rows */
+  .row-link { transition: background-color .3s var(--ease-out); }
+  .row-link .row-arrow { transition: transform .35s var(--ease-out), opacity .35s; opacity: .35; }
+  .row-link:hover .row-arrow { transform: translateX(6px); opacity: 1; color: var(--cyan); }
+  .row-link .row-title { transition: transform .45s var(--ease-out), color .3s; }
+  .row-link:hover .row-title { transform: translateX(10px); }
+  [dir="rtl"] .row-link:hover .row-arrow { transform: translateX(-6px); }
+  [dir="rtl"] .row-link:hover .row-title { transform: translateX(-10px); }
+
+  #peek { position: fixed; top: 0; left: 0; width: 220px; pointer-events: none; z-index: 40; opacity: 0; transform: translate3d(-50%, -50%, 0) scale(.92) rotate(-4deg); transition: opacity .25s, transform .35s var(--ease-out); }
+  #peek.wide { width: 440px; }
+  #peek.on { opacity: 1; transform: translate3d(-50%, -50%, 0) scale(1) rotate(-4deg); }
+
+  /* architecture stack */
+  .layer { position: relative; }
+  .layer + .layer::before { content: ""; position: absolute; inset-inline-start: 1.4rem; top: -1rem; height: 1rem; width: 1px; background: linear-gradient(var(--cyan), transparent); opacity: .5; }
+
+  /* video */
+  .video-card video { width: 100%; display: block; aspect-ratio: 16 / 10; background: #000; object-fit: contain; }
+  .play-badge { transition: transform .35s var(--ease-out), background-color .25s; }
+  .video-card:hover .play-badge { transform: scale(1.06); }
+
+  /* view transitions between routes */
+  ::view-transition-old(root) { animation: vt-out .28s var(--ease-out) both; }
+  ::view-transition-new(root) { animation: vt-in .5s var(--ease-out) both; }
+  @keyframes vt-out { to { opacity: 0; transform: translateY(-8px); filter: blur(4px); } }
+  @keyframes vt-in { from { opacity: 0; transform: translateY(14px); filter: blur(6px); } }
+  .route-in { animation: vt-in .55s var(--ease-out) both; }
+
+  .pulse-dot { box-shadow: 0 0 0 0 rgba(94,234,212,.55); animation: pulse 2.4s infinite; }
+  @keyframes pulse { 70% { box-shadow: 0 0 0 9px rgba(94,234,212,0); } 100% { box-shadow: 0 0 0 0 rgba(94,234,212,0); } }
+
+  .float-a { animation: floatA 9s ease-in-out infinite; }
+  .float-b { animation: floatB 11s ease-in-out infinite; }
+  @keyframes floatA { 50% { transform: translateY(-10px) rotate(-6deg); } }
+  @keyframes floatB { 50% { transform: translateY(8px) rotate(5deg); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+
+<body class="grain font-sans">
+  <a href="#main" id="skip" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[70] btn btn-primary">Skip to content</a>
+
+  <!-- NAV -->
+  <header id="nav" class="fixed inset-x-0 top-0 z-50 transition-all duration-500">
+    <div class="mx-auto max-w-7xl px-4 sm:px-8">
+      <div id="navInner" class="mt-3 flex h-14 items-center justify-between rounded-full border border-transparent px-3 sm:px-4 transition-all duration-500">
+        <a href="#/" class="group flex items-center gap-3" aria-label="Home">
+          <span class="grid h-9 w-9 place-items-center rounded-full border hairline bg-ink-850">
+            <span class="serif-i !font-['Instrument_Serif'] !italic text-[20px] leading-none text-neon-cyan">k</span>
+          </span>
+          <span id="navName" class="hidden sm:block text-[14px] font-medium tracking-tight">Koby Mashiach</span>
+        </a>
+        <nav class="flex items-center gap-1 text-[13.5px] text-fog-300">
+          <a href="#/work" data-t="nav.work" class="hidden sm:block rounded-full px-3 py-2 hover:text-white">Work</a>
+          <a href="#/expertise" data-t="nav.expertise" class="hidden md:block rounded-full px-3 py-2 hover:text-white">Expertise</a>
+          <a href="#/about" data-t="nav.about" class="hidden md:block rounded-full px-3 py-2 hover:text-white">About</a>
+          <div class="lang mx-1" role="group" aria-label="Language">
+            <button type="button" data-lang="en" aria-pressed="true">EN</button>
+            <button type="button" data-lang="he" aria-pressed="false" lang="he">עב</button>
+          </div>
+          <a href="#/contact" class="btn btn-ghost !h-9 !px-4">
+            <span class="h-1.5 w-1.5 rounded-full bg-neon-cyan pulse-dot"></span><span data-t="nav.talk">Let’s talk</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1" class="outline-none"></main>
+
+  <footer class="border-t hairline">
+    <div class="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-10 sm:px-8 md:flex-row md:items-center md:justify-between">
+      <p class="text-[13px] text-fog-500">© <span id="year"></span> <span data-t="footer.line">Koby Mashiach · Designed and built by hand.</span></p>
+      <div class="flex items-center gap-5 text-[13px] text-fog-400">
+        <a class="hover:text-white" href="mailto:koby9779@gmail.com" data-t="contact.email">Email</a>
+        <a class="hover:text-white" href="https://github.com/KobyMashiach" target="_blank" rel="noopener">GitHub</a>
+        <a class="hover:text-white ltr" href="tel:+972508247743">+972 50-824-7743</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- floating preview for the work index -->
+  <div id="peek" aria-hidden="true"></div>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="fixed inset-0 z-[80] hidden items-center justify-center bg-black/90 backdrop-blur-md p-4" role="dialog" aria-modal="true" aria-label="Screenshot viewer" dir="ltr">
+    <button id="lbClose" class="absolute right-4 top-4 grid h-11 w-11 place-items-center rounded-full border hairline text-fog-300 hover:text-white" aria-label="Close">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <button id="lbPrev" class="absolute left-3 sm:left-8 grid h-11 w-11 place-items-center rounded-full border hairline text-fog-300 hover:text-white" aria-label="Previous">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 6l-6 6 6 6"/></svg>
+    </button>
+    <figure class="flex max-h-full flex-col items-center gap-4">
+      <img id="lbImg" alt="" class="max-h-[82vh] w-auto rounded-2xl border hairline">
+      <figcaption id="lbCap" class="label !text-fog-300"></figcaption>
+    </figure>
+    <button id="lbNext" class="absolute right-3 sm:right-8 grid h-11 w-11 place-items-center rounded-full border hairline text-fog-300 hover:text-white" aria-label="Next">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 6l6 6-6 6"/></svg>
+    </button>
+  </div>
+
+<!-- Hebrew copy of the content below (window.HE). The page still works in English without it. -->
+<script src="assets/i18n-he.js"></script>
+<script>
+/* ==========================================================================
+   CONTENT
+   Everything on the site is rendered from the objects below. Hebrew text
+   for the same objects lives in assets/i18n-he.js; interface strings are in
+   UI further down. To add a screenshot, add an item under `screens` and
+   drop the file at its path — until the file exists the frame shows a
+   labelled empty slot.
+   ========================================================================== */
+
+const ME = {
+  name: 'Koby Mashiach',
+  nameHe: 'קובי משיח',
+  years: 7,
+  email: 'koby9779@gmail.com',
+  phone: '050-824-7743',
+  phoneIntl: '+972508247743',
+  github: 'https://github.com/KobyMashiach',
+};
+
+const PROJECTS = [
+  {
+    slug: 'leadweaver',
+    name: 'LeadWeaver AI',
+    icon: null,
+    monogram: 'LW',
+    kind: 'Own product · B2B SaaS',
+    year: '2026',
+    tagline: 'Agents that find local businesses with broken websites, show them the fixed version live, and start the conversation on WhatsApp.',
+    summary: [
+      'LeadWeaver is a SaaS for digital agencies and freelance web builders. A pipeline of five agents finds local businesses, audits their websites, writes a personalised Hebrew message, builds a live before-and-after demo of their own homepage with the problems fixed, and sends it through the WhatsApp Cloud API.',
+      'It is a full product, not a prototype: autopilot with quiet hours and quotas, branded quotes, downloadable fix packs, five billing providers, a 30-language dashboard and an infrastructure-as-code AWS deployment.',
+    ],
+    role: 'Founder · product, architecture & full-stack engineering',
+    contribution: ['Product definition & specs', 'UI / UX design', 'Architecture', 'Backend & agents', 'Infrastructure & security', 'Pitch & go-to-market'],
+    platforms: ['Web', 'API', 'WhatsApp'],
+    status: 'Private repository — demo videos below',
+    links: { private: 'Private repository — code available on request' },
+    videos: [
+      { src: 'assets/video/leadweaver-pitch.mp4', poster: 'assets/video/leadweaver-pitch.jpg', cap: 'Product pitch', len: '2:20' },
+      { src: 'assets/video/leadweaver-walkthrough.mp4', poster: 'assets/video/leadweaver-walkthrough.jpg', cap: 'Full walkthrough', len: '5:22' },
+    ],
+    metrics: [
+      { v: '5', k: 'Agents in the lead pipeline' },
+      { v: '44', k: 'Typed tools in the ⌘K assistant' },
+      { v: '30', k: 'Dashboard languages, RTL included' },
+      { v: '2.8s → 0.5s', k: 'Site audit, after optimisation' },
+    ],
+    highlights: [
+      { t: 'Scout → Auditor → Writer → Builder → Dispatcher', d: 'Gemini writes search queries and Tavily runs them; Gemini extracts the business and its site; the platform (WordPress, Shopify, Wix) is detected. The Auditor then scores the site 1–100 with no LLM at all.' },
+      { t: 'Show, don’t tell', d: 'The Preview Builder rewrites the prospect’s real homepage DOM to show it fixed, live. Fix packs (WordPress plugin, Shopify, Wix, Apache / nginx / Netlify redirects) download as a zip, and a re-scan verifies what landed.' },
+      { t: 'An assistant with guard-rails', d: 'A ⌘K assistant over 44 typed tools with Gemini function calling and streaming. Sending or deleting requires an HMAC-signed confirmation from the user.' },
+      { t: 'Autopilot', d: 'Scheduled runs with quiet hours, quotas and automatic quotes, coordinated by an in-process scheduler with atomic claims and heartbeats — no external queue.' },
+      { t: 'Money in, receipts out', d: 'Cardcom, MAX, Morning, iCount and Stripe webhooks with signature checks and idempotency; receipts emailed automatically.' },
+      { t: 'Compliance by default', d: 'Israeli anti-spam law (opt-out, consent, quiet hours), accessibility standard IS 5568, and GDPR export and delete.' },
+    ],
+    architecture: [
+      { name: 'Client', items: ['Vanilla-JS SPA · no build step', '30 languages · RTL', 'Dark mode · accessibility'] },
+      { name: 'API', items: ['FastAPI · Python 3.12', 'Pydantic v2', 'httpx HTTP/2', 'lxml / BeautifulSoup'] },
+      { name: 'Agents', items: ['Scout', 'Auditor', 'Outreach Writer', 'Preview Builder', 'Dispatcher'] },
+      { name: 'LLM layer', items: ['Local Ollama first', 'Gemini fallback chain', '24h cache · single-flight'] },
+      { name: 'Data', items: ['Supabase Postgres + RLS', 'Auth / JWT', 'Storage'] },
+      { name: 'Infra', items: ['Terraform · AWS ECS Fargate', 'ALB + WAF · KMS · GuardDuty', 'GitHub Actions · OIDC'] },
+    ],
+    challenges: [
+      { p: 'Audits too slow to run at scale.', s: 'Parse once with lxml off the event loop, cap link checks with a time budget, and cache results per URL for 15 minutes — 2.8s down to 0.5s on a heavy news site.' },
+      { p: 'False alarms erode trust.', s: 'A link is only “broken” after a second check, and sites behind bot walls are skipped rather than scored.' },
+      { p: 'Fetching arbitrary URLs is a security risk.', s: 'SSRF containment across redirects and network ACLs, CSP nonces, encrypted per-customer WhatsApp tokens, webhooks that fail closed, and a server that refuses to boot with a weak production config. Backed by a written threat model.' },
+      { p: 'Local LLMs: cheaper or faster?', s: 'Benchmarked both. Local models saved cost and rate limits, not time — so the layer prefers local and falls back to the cloud.' },
+    ],
+    stack: {
+      'Backend': ['Python', 'FastAPI', 'Pydantic', 'asyncio', 'httpx'],
+      'Data': ['Supabase', 'PostgreSQL', 'Row-Level Security'],
+      'AI': ['Gemini', 'Ollama', 'Tavily'],
+      'Messaging': ['WhatsApp Cloud API', 'Meta Lead Ads'],
+      'Infra': ['AWS ECS Fargate', 'Terraform', 'GitHub Actions', 'Docker'],
+    },
+    screens: {
+      frame: 'browser',
+      url: 'LeadWeaver AI',
+      items: [
+        { src: 'assets/screens/leadweaver/01.jpg', cap: 'Dashboard', capHe: 'דשבורד' },
+        { src: 'assets/screens/leadweaver/02.jpg', cap: 'Leads with health scores', capHe: 'לידים עם ציון בריאות' },
+        { src: 'assets/screens/leadweaver/03.jpg', cap: 'Lead page: audit, message, chat', capHe: 'עמוד ליד: ביקורת, הודעה ושיחה' },
+        { src: 'assets/screens/leadweaver/04.jpg', cap: 'Live “after the fix” page', capHe: 'דף ״אחרי התיקון״ חי' },
+        { src: 'assets/screens/leadweaver/05.jpg', cap: 'Scan findings', capHe: 'ממצאי הסריקה' },
+        { src: 'assets/screens/leadweaver/06.jpg', cap: 'Owner self-scan report', capHe: 'דוח סריקה עצמית לבעל האתר' },
+      ],
+    },
+  },
+
+  {
+    slug: 'easy-plate',
+    name: 'Easy Plate AI',
+    icon: 'assets/icons/easy-plate.png',
+    kind: 'Own product · Live on Google Play',
+    year: '2025 — now',
+    tagline: 'An AI kitchen app that turns a photo, a link or a TikTok into a recipe, then plans the week and writes the grocery list.',
+    summary: [
+      'Easy Plate is a full consumer product I designed, built and operate on my own: a Flutter app on iOS and Android, a React web app, an SEO landing site and a serverless backend of around thirty Cloud Functions.',
+      'Users import recipes from almost anywhere — a photographed cookbook page, a PDF, a website, an Instagram reel — into personal recipe books with a page-flip UI. From there they plan weekly menus, get one combined grocery list, see per-serving nutrition, scan receipts into a personal price book, and cook hands-free with Shefi, a voice assistant that answers to “Hey Shefi”.',
+    ],
+    role: 'Founder · product, design, architecture & engineering',
+    contribution: ['Product definition & specs', 'UI / UX design', 'Architecture', 'Flutter & native development', 'Backend & AI', 'Payments & analytics', 'Store listing & marketing site'],
+    platforms: ['iOS', 'Android', 'Web', 'Home-screen widgets'],
+    status: 'Live on Google Play · App Store coming soon',
+    links: {
+      play: 'https://play.google.com/store/apps/details?id=com.KHEasyDev.easy_plate',
+      soon: 'App Store — coming soon',
+      web: 'https://aieasyplate.app',
+      github: 'https://github.com/KobyMashiach/easy_plate',
+    },
+    metrics: [
+      { v: '5', k: 'Languages, two of them RTL' },
+      { v: '~30', k: 'Cloud Functions behind the app' },
+      { v: '~40', k: 'Remote feature flags, 4 states each' },
+      { v: '4', k: 'Native home-screen widgets' },
+    ],
+    highlights: [
+      { t: 'Import a recipe from anywhere', d: 'Text, photo, PDF, URL, web search and social video. Links try schema.org JSON-LD first and only fall back to Gemini. TikTok, Instagram, Facebook and YouTube videos are read server-side: yt-dlp fetches the clip and multimodal Gemini reads the on-screen text, the steps and the narration.' },
+      { t: 'Shefi — a voice assistant with real tools', d: 'A tool-calling agent that works through the app’s own repositories: it can find a recipe, plan a day or add to the grocery list. “Hey Shefi” runs on-device with a sherpa-onnx keyword-spotting model inside an Android foreground service, with Siri Shortcuts on iOS and Cloud TTS voices.' },
+      { t: 'Offline-first, synced everywhere', d: 'Every Hive box is scoped to the signed-in user and mirrored to Firestore. Writes land on the device first and sync in the background, so saving never waits on the network. On sign-in the cloud copy wins and local-only items are pushed back.' },
+      { t: 'Built for households', d: 'Recipes, books, meal plans and grocery lists can be shared with viewer or editor roles via QR, link or share code. Households on Pro Duo / Family share one cloud root with live listeners and inherit the subscription.' },
+      { t: 'Native where it matters', d: 'iOS WidgetKit and Android widgets (today’s menu, grocery list, quick add, assistant), an iOS Share Extension, native ad factories in Swift and Kotlin, and cook mode whose timers keep running as notifications after the screen is gone.' },
+      { t: 'A business, not a demo', d: 'RevenueCat subscriptions on mobile, Stripe / PayPlus / Paddle on the web, AdMob native and rewarded ads that unlock extra AI quota, and an admin console for users, Remote Config, store downloads and support chat.' },
+    ],
+    architecture: [
+      { name: 'Presentation', items: ['Flutter', 'BLoC', 'go_router', 'slang i18n · 5 languages', 'Custom motion system'] },
+      { name: 'Domain', items: ['Use cases', 'freezed entities', 'Repository contracts', 'FeatureGate'] },
+      { name: 'Data', items: ['Hive CE · per-user boxes', 'Firestore mirror', 'Storage-path images', 'Dio'] },
+      { name: 'Native', items: ['Kotlin · wake word FGS', 'Kotlin · widgets & overlay', 'Swift · WidgetKit', 'Swift · Share Extension', 'Siri intents'] },
+      { name: 'Cloud', items: ['Cloud Functions · Node 22', 'aiProxy · keys & quotas', 'socialRecipe · yt-dlp', 'Billing webhooks', 'Scheduled jobs'] },
+      { name: 'AI', items: ['Gemini · structured output', 'url_context & google_search tools', 'Image generation', 'Cloud TTS'] },
+      { name: 'Web', items: ['React + Vite + TS web app', 'Static SEO site · 5 languages', 'Firebase Hosting'] },
+    ],
+    challenges: [
+      { p: 'One account’s data appearing for the next user on the same phone.', s: 'Scoped every local box to the user’s uid behind a UserScope, worked around Hive’s typed-box closing behaviour that had stranded users on the OTP screen, and wiped every scoped box on sign-out.' },
+      { p: 'AI analysis that felt like a timeout.', s: 'Kept a warm instance in a closer region, tuned thinking levels per task, set shorter retries inside a 45-second budget, and stopped retrying quota errors. Slow analyses can be parked and resumed later.' },
+      { p: 'Recipes locked behind social-media login walls.', s: 'Moved extraction server-side: yt-dlp + multimodal Gemini over the video itself, an oEmbed caption fallback, and typed errors the app can explain to the user.' },
+      { p: 'No secrets in the binary.', s: 'Every AI call goes through a proxy that holds the key, enforces a per-user daily quota against a trusted clock, and lets rewarded ads extend it.' },
+      { p: 'Shared photos that still respect permissions.', s: 'Images travel between accounts as Storage paths, not public URLs, so security rules still apply. Each image is downloaded once and cached.' },
+    ],
+    stack: {
+      'Mobile': ['Flutter', 'Dart', 'flutter_bloc', 'freezed', 'go_router', 'Hive CE', 'slang'],
+      'Native': ['Kotlin', 'Swift', 'WidgetKit', 'sherpa-onnx', 'Foreground services'],
+      'Backend': ['Firebase Auth', 'Firestore', 'Cloud Functions', 'Storage', 'FCM', 'Remote Config', 'Crashlytics'],
+      'AI': ['Gemini', 'Cloud TTS', 'yt-dlp'],
+      'Revenue': ['RevenueCat', 'AdMob', 'Stripe', 'Paddle'],
+      'Web': ['React', 'Vite', 'TypeScript', 'Tailwind'],
+    },
+    hero: ['assets/screens/easy-plate/06_meal_plan.jpg', 'assets/screens/easy-plate/01_recipes.jpg'],
+    screens: {
+      frame: 'phone',
+      items: [
+        { src: 'assets/screens/easy-plate/01_recipes.jpg', cap: 'Recipe feed', capHe: 'פיד המתכונים' },
+        { src: 'assets/screens/easy-plate/11_recipe_page.jpg', cap: 'Recipe page', capHe: 'עמוד מתכון' },
+        { src: 'assets/screens/easy-plate/14_add_recipe.jpg', cap: 'Add a recipe — 8 sources', capHe: 'הוספת מתכון — 8 מקורות' },
+        { src: 'assets/screens/easy-plate/03_ai_import.jpg', cap: 'AI import', capHe: 'ייבוא עם AI' },
+        { src: 'assets/screens/easy-plate/13_cook_mode.jpg', cap: 'Cook mode', capHe: 'מצב בישול' },
+        { src: 'assets/screens/easy-plate/12_recipe_nutrition.jpg', cap: 'Nutrition per serving', capHe: 'ערכים תזונתיים למנה' },
+        { src: 'assets/screens/easy-plate/05_book_flip.jpg', cap: 'Page-flip recipe book', capHe: 'ספר מתכונים עם דפדוף' },
+        { src: 'assets/screens/easy-plate/04_library.jpg', cap: 'Library', capHe: 'הספרייה' },
+        { src: 'assets/screens/easy-plate/06_meal_plan.jpg', cap: 'Weekly meal plan', capHe: 'תפריט שבועי' },
+        { src: 'assets/screens/easy-plate/15_plan_day.jpg', cap: 'Daily totals', capHe: 'סיכום יומי' },
+        { src: 'assets/screens/easy-plate/07_nutrition.jpg', cap: 'Nutrition dashboard', capHe: 'דשבורד תזונה' },
+        { src: 'assets/screens/easy-plate/08_grocery.jpg', cap: 'Combined grocery list', capHe: 'רשימת קניות מאוחדת' },
+        { src: 'assets/screens/easy-plate/10_premium.jpg', cap: 'Premium', capHe: 'פרימיום' },
+      ],
+    },
+  },
+
+  {
+    slug: 'easy-birthday',
+    name: 'Easy Birthday',
+    icon: 'assets/icons/easy-birthday.png',
+    kind: 'Own product · Closed testing',
+    year: '2024 — now',
+    tagline: 'Build a birthday surprise for the person you love — and let them unwrap it on their phone or their watch.',
+    summary: [
+      'Easy Birthday lets you assemble a personal surprise: photos and videos, written messages, a wish list, a calendar of your dates, a quiz and a memory game, and an AI-written greeting. Your partner opens it as a sequence of reveals with confetti and flip cards.',
+      'The same event document is live-synced between creator and recipient, and a Wear OS companion app signs in by asking the phone, so the surprise can be opened on the wrist.',
+    ],
+    role: 'Founder · product, design & engineering',
+    contribution: ['Product definition & specs', 'UI / UX design', 'Architecture', 'Flutter & Wear OS development', 'Firebase backend', 'CI/CD & store release'],
+    platforms: ['Android', 'iOS', 'Wear OS'],
+    status: 'Closed testing on Google Play',
+    links: {
+      soon: 'Google Play — closed testing',
+      github: 'https://github.com/KobyMashiach/easy_birthday_v2',
+    },
+    metrics: [
+      { v: '2', k: 'Surfaces: phone and Wear OS' },
+      { v: '7', k: 'Kinds of surprise content' },
+      { v: 'He / En', k: 'RTL and LTR' },
+      { v: 'CI', k: 'Tag → Play internal track' },
+    ],
+    highlights: [
+      { t: 'Two apps in one', d: 'A creator flow with an editor per content type, and a matching recipient flow that reveals each one — confetti, flip cards, a video player and quiz results.' },
+      { t: 'On the wrist', d: 'A Wear OS companion: the watch asks the phone to log it in over the Wearable message API, then shows the surprise with rotary input.' },
+      { t: 'Purchases that never get lost', d: 'A session-long purchase service saves a paid purchase on the device first, completes it with the store, then attaches the plan to the event — even later. On Google Play it recovers purchases a previous run left unconsumed.' },
+      { t: 'Media pipeline', d: 'Images are resized and videos compressed one at a time through a queue before upload, with replace and delete use cases per category.' },
+      { t: 'AI greetings', d: 'Gemini through Firebase AI writes a greeting from your details, with the model name kept in one place so a retired model is a one-line change.' },
+      { t: 'Shipping on a tag', d: 'GitHub Actions builds the release bundle on every version tag and uploads it to the Play internal track.' },
+    ],
+    architecture: [
+      { name: 'Presentation', items: ['flutter_bloc', 'go_router', 'slang · He / En', 'Theme colours per event'] },
+      { name: 'Domain', items: ['Feature-first clean architecture', 'Single-purpose use cases', 'freezed models'] },
+      { name: 'Data', items: ['Firestore live streams', 'Firebase Storage', 'Hive CE', 'Cache manager'] },
+      { name: 'Platform', items: ['Phone OTP auth', 'in_app_purchase', 'Wear OS messaging', 'Firebase AI'] },
+    ],
+    challenges: [
+      { p: 'A watch has no keyboard to sign in with.', s: 'The watch requests a login from the paired phone and receives a session over the Wearable message API.' },
+      { p: 'Store purchases that complete after the app is gone.', s: 'Persist first, complete second, attach third — and sweep for unconsumed purchases on start.' },
+      { p: 'Large videos on mobile data.', s: 'A sequential compression and upload queue that keeps memory flat and progress honest.' },
+    ],
+    stack: {
+      'Mobile': ['Flutter', 'Dart', 'flutter_bloc', 'go_router', 'freezed', 'Hive CE'],
+      'Backend': ['Firebase Auth', 'Firestore', 'Storage', 'Firebase AI'],
+      'Platform': ['Wear OS', 'in_app_purchase', 'GitHub Actions'],
+    },
+    screens: {
+      frame: 'phone',
+      items: [
+        { src: 'assets/screens/easy-birthday/01.jpg', cap: 'Sign-in', capHe: 'מסך התחברות' },
+      ],
+    },
+  },
+
+  {
+    slug: 'sharvit',
+    name: 'Sharvit',
+    icon: 'assets/icons/sharvit.png',
+    kind: 'Enterprise · Israel Electric Corp.',
+    year: 'Ongoing',
+    tagline: 'The field-operations app electric-grid crews use to work through faults and planned works — and keep working when the signal drops.',
+    summary: [
+      'Sharvit is an internal enterprise app for the Israel Electric Corporation’s service crews and supervisors. It carries the whole job: fault details and history, customers in outage, meters and contracts, closing the job with the right codes, and filing damage reports with signatures and photos.',
+      'Crews work in basements, fields and substations, so the app is built offline-first: requests queue locally and replay when the network returns, and maps render from tiles stored on the device. It runs on phones and tablets, with layouts designed for each.',
+    ],
+    role: 'Mobile developer · design, architecture & specification',
+    contribution: ['Flutter development', 'Parts of the UI / UX design', 'Parts of the architecture', 'Feature specification', 'Requirements sessions with the client', 'Technical design documents'],
+    platforms: ['Android', 'iOS', 'Phone & tablet'],
+    status: 'In production — internal enterprise distribution',
+    links: { private: 'Internal enterprise app — not publicly distributed' },
+    metrics: [
+      { v: 'Offline', k: 'Outbox queue with replay' },
+      { v: 'On-device', k: 'Vector maps, no network needed' },
+      { v: '4', k: 'Build flavors: dev → prod' },
+      { v: '2', k: 'Form factors with dedicated layouts' },
+    ],
+    highlights: [
+      { t: 'Offline-first by design', d: 'An outbox queue holds every request made without a connection and sends it later — one at a time or in batches — with a visible status per request. Reference data is cached in Hive; sqflite holds working data; connectivity is watched continuously.' },
+      { t: 'Maps without a network', d: 'MapLibre GL is fed by a small HTTP server running inside the app (shelf), with a tile worker that serves and caches vector tiles and glyph fonts from disk.' },
+      { t: 'Enterprise identity', d: 'Microsoft sign-in through native Kotlin and Swift bridges, a Dio interceptor that refreshes tokens on 401, a forced-logout service and keep-alive, all inside the organisation’s mobile-management policy.' },
+      { t: 'A form engine, not forms', d: 'Damage reports are rendered from JSON definitions, with a signature pad and tracked media capture, so new report types don’t need a release.' },
+      { t: 'Rules that match the field', d: 'Closing a job follows configurable business rules: close codes, contract codes and reasons for non-completion, specified first in technical design documents.' },
+      { t: 'Safety built in', d: 'A distress button that turns on the torch, vibrates and places a direct call.' },
+    ],
+    architecture: [
+      { name: 'Presentation', items: ['flutter_bloc', 'go_router', 'slang · Hebrew & English', 'Adaptive phone / tablet layouts'] },
+      { name: 'Domain', items: ['Use cases', 'Mappers', 'DI injector'] },
+      { name: 'Data', items: ['Dio + auth interceptors', 'Hive CE reference cache', 'sqflite', 'Offline outbox'] },
+      { name: 'Native', items: ['Kotlin / Swift identity bridges', 'Mobile-management SDK', 'Workmanager background tasks'] },
+      { name: 'Delivery', items: ['dev / test / beta / prod flavors', 'bloc_test + mocktail suite', 'FCM + local notifications'] },
+    ],
+    challenges: [
+      { p: 'Crews lose coverage in exactly the places they work.', s: 'Built an outbox with per-request status and batch replay, so nothing a technician records is lost or blocked by the network.' },
+      { p: 'Maps are useless offline.', s: 'Served vector tiles to MapLibre from an embedded local server, so the map behaves the same with or without signal.' },
+      { p: 'Corporate SSO and device management in a cross-platform app.', s: 'Wrapped the native SDKs in MethodChannel bridges on both platforms and centralised token refresh and forced logout in the networking layer.' },
+      { p: 'Job-closing logic that changes with operations.', s: 'Modelled closing requirements as rules driven by codes, documented them in technical design documents before implementation, and covered them with bloc tests.' },
+    ],
+    stack: {
+      'Mobile': ['Flutter', 'Dart', 'flutter_bloc', 'freezed', 'go_router', 'slang'],
+      'Data': ['Hive CE', 'sqflite', 'Dio', 'connectivity_plus'],
+      'Maps': ['MapLibre GL', 'shelf (local server)'],
+      'Native': ['Kotlin', 'Swift', 'MethodChannels', 'Workmanager'],
+      'Quality': ['bloc_test', 'mocktail', 'Build flavors'],
+    },
+    screens: { restricted: true, frame: 'phone', items: [] },
+  },
+
+  {
+    slug: 'get-electric',
+    name: 'GetElectric',
+    icon: 'assets/icons/get-electric.png',
+    kind: 'Enterprise · Israel Electric Corp.',
+    year: 'Ongoing',
+    tagline: 'A dispatch app for electrical technicians: pick an outage off a live map, claim it with a swipe, and close it with photos from the field.',
+    summary: [
+      'GetElectric serves technicians who take customer outage calls. A technician goes available, sees open faults on a map within a radius the system allows, swipes to accept, reports arrival and the start of work, then closes the fault with a close code, notes, photos and video — including whether power was restored.',
+      'Around that flow sit the tools a field workforce needs: qualifications, ratings and achievements, monthly and yearly paid-fault quotas, an inbox, an archive with reports, and an in-app FAQ bot.',
+    ],
+    role: 'Mobile developer · Flutter',
+    platforms: ['Android', 'iOS'],
+    status: 'In production — internal enterprise distribution',
+    links: { private: 'Internal enterprise app — not publicly distributed' },
+    metrics: [
+      { v: 'Live', k: 'Fault map with radius filter' },
+      { v: '3-tier', k: 'GPS → network → cell-tower fallback' },
+      { v: 'SSO', k: 'With MFA and biometrics' },
+      { v: '4', k: 'Build flavors' },
+    ],
+    highlights: [
+      { t: 'A live map as the home screen', d: 'flutter_map with fault, meter and suggestion markers, popups, light and dark tiles, a sliding panel, a compass, and a one-tap hand-off to the technician’s navigation app.' },
+      { t: 'Location you can trust', d: 'A background tracking service with timeouts, retries and stream recovery; mock-GPS detection outside dev builds; and, when GPS fails, a Kotlin MethodChannel that reads GSM / LTE / WCDMA cell info and resolves it to a position. NTP time sync keeps timestamps honest.' },
+      { t: 'Enterprise sign-in', d: 'Okta with PKCE, MFA with SMS autofill, biometric re-entry, and tokens kept in secure storage.' },
+      { t: 'Two technicians, one fault', d: 'Claiming is a race. The app handles it explicitly and tells the losing technician the fault was taken, instead of failing silently.' },
+      { t: 'The whole lifecycle', d: 'Accept → en route → arrived → working → closed or handed on, each step a clear screen with media upload at the end.' },
+      { t: 'Operable in production', d: 'Forced updates through Remote Config, a file logger with device info and a native export to Downloads, and a contact flow that attaches the logs.' },
+    ],
+    architecture: [
+      { name: 'Presentation', items: ['Riverpod / StateNotifier', 'auto_route', 'Hebrew RTL UI', 'Dark mode & car mode'] },
+      { name: 'Domain', items: ['Clean architecture per feature', 'dartz Either', 'freezed models'] },
+      { name: 'Data', items: ['Dio behind a network service', 'Local cache layer', 'Secure storage'] },
+      { name: 'Native', items: ['Kotlin cell-info channel', 'Background location', 'Native log export'] },
+      { name: 'Platform', items: ['Okta PKCE + MFA', 'FCM', 'Remote Config', 'envied config'] },
+    ],
+    challenges: [
+      { p: 'Background location under Android and iOS limits.', s: 'A dedicated tracking service with retries and stream recovery, plus a cell-tower fallback through a native channel when GPS is unavailable.' },
+      { p: 'Spoofed locations.', s: 'Mock-location detection outside development builds, and NTP-synced time on every event.' },
+      { p: 'Two technicians claiming the same fault.', s: 'An explicit claim flow with a “fault taken” state, so the UI reflects the server’s decision immediately.' },
+      { p: 'Secure but fast sign-in for shift workers.', s: 'SSO with MFA once, then biometrics for re-entry, with tokens in the platform keystore.' },
+    ],
+    stack: {
+      'Mobile': ['Flutter', 'Dart', 'Riverpod', 'auto_route', 'freezed', 'dartz'],
+      'Maps & location': ['flutter_map', 'geolocator', 'background_location', 'map_launcher'],
+      'Identity': ['Okta PKCE', 'local_auth', 'flutter_secure_storage'],
+      'Platform': ['Kotlin', 'Firebase Messaging', 'Remote Config'],
+    },
+    screens: { restricted: true, frame: 'phone', items: [] },
+  },
+
+  {
+    slug: 'apartment-hunter',
+    name: 'Apartment Hunter',
+    icon: null,
+    monogram: 'AH',
+    kind: 'Side project · Automation',
+    year: '2026',
+    tagline: 'A rental hunter that reads the photos too — and only emails the apartments worth seeing.',
+    summary: [
+      'Built for my sister, who was searching for an apartment: it scrapes Yad2, Facebook Marketplace and groups, and public Telegram channels every hour, filters by city, price, rooms and floor, and then asks Gemini vision to reject listings with things she didn’t want — terrazzo floors, basements, damp — with the evidence written back in Hebrew.',
+      'It runs on a home machine on purpose (the sources block cloud IPs), has a Streamlit UI a non-technical user can drive, and never sends the same apartment twice.',
+    ],
+    role: 'Sole developer · spec to deployment',
+    contribution: ['Requirements with the user', 'Architecture', 'Scrapers & AI filter', 'UI', 'Home-server deployment'],
+    platforms: ['Desktop', 'Web UI'],
+    status: 'In personal use',
+    links: { private: 'Private repository' },
+    metrics: [
+      { v: '3', k: 'Sources scraped' },
+      { v: '8', k: 'Photos checked per listing' },
+      { v: 'Hourly', k: 'With ±20% jitter' },
+      { v: '0', k: 'Duplicate emails' },
+    ],
+    highlights: [
+      { t: 'Free-text rules', d: '“Things I don’t want” is plain language, turned into a structured Gemini vision check with an adjustable sensitivity.' },
+      { t: 'Cheap filters first', d: 'Detail pages and AI calls happen only for new listings that already passed price, room and floor filters.' },
+      { t: 'Polite scraping', d: 'Playwright with a saved session, 3–9 second random delays and persistent cookies.' },
+      { t: 'Dedup across sources', d: 'Phone + price or identical text matching, with a sent log that survives restarts and history wipes.' },
+    ],
+    architecture: [
+      { name: 'UI', items: ['Streamlit', 'CLI flags'] },
+      { name: 'Scrapers', items: ['Playwright · Yad2, Facebook', 'requests + BS4 · Telegram'] },
+      { name: 'Pipeline', items: ['Text parsing', 'Gemini vision filter', 'Pydantic output'] },
+      { name: 'Storage', items: ['SQLite', 'Daily backups'] },
+      { name: 'Ops', items: ['launchd / systemd', 'Tailscale remote access', 'Gmail SMTP'] },
+    ],
+    challenges: [
+      { p: 'Porcelain and terrazzo look alike in a phone photo.', s: 'Iterated the vision prompt with contrasting examples and required evidence for every rejection.' },
+      { p: 'Facebook’s markup changes constantly.', s: 'Best-effort parsing isolated behind a scraper interface, so one broken source never stops the others.' },
+    ],
+    stack: {
+      'Core': ['Python', 'Playwright', 'Streamlit', 'SQLite'],
+      'AI': ['Gemini vision', 'Pydantic'],
+    },
+    screens: {
+      frame: 'browser',
+      url: 'localhost:8501',
+      note: 'Contact details in listings are masked.',
+      noteHe: 'פרטי הקשר במודעות הוסתרו.',
+      items: [
+        { src: 'assets/screens/apartment-hunter/01.jpg', cap: 'Search settings', capHe: 'הגדרות חיפוש' },
+        { src: 'assets/screens/apartment-hunter/02.jpg', cap: 'Matches that passed the AI filter', capHe: 'דירות שעברו את סינון ה-AI' },
+      ],
+    },
+  },
+];
+
+const EXPERTISE = [
+  { t: 'Architecture', d: 'Feature-first clean architecture that a team can grow into.', items: ['Clean Architecture', 'BLoC · Riverpod', 'freezed · json_serializable', 'go_router · auto_route', 'Dependency injection', 'Feature flags'] },
+  { t: 'Native & platform', d: 'Going below Flutter when the product needs it.', items: ['Kotlin & Swift channels', 'Home-screen widgets', 'Share extensions', 'Foreground services', 'Background location', 'Wear OS'] },
+  { t: 'Offline & data', d: 'Apps that work in a basement and sync when they surface.', items: ['Hive · sqflite', 'Outbox / replay queues', 'Firestore mirroring', 'Offline vector maps', 'Conflict rules', 'Per-user data scoping'] },
+  { t: 'Backend & AI', d: 'Owning the server side of my own products.', items: ['Firebase · Cloud Functions', 'FastAPI · Python', 'Gemini multimodal', 'Tool-calling agents', 'Postgres / Supabase', 'Webhooks & billing'] },
+  { t: 'Enterprise', d: 'Security and identity the way large organisations require.', items: ['Okta · Microsoft SSO', 'MFA & biometrics', 'Mobile device management', 'Secure storage', 'Build flavors', 'Hebrew RTL at scale'] },
+  { t: 'Shipping', d: 'From the first commit to the store listing and after.', items: ['App Store · Google Play', 'RevenueCat · AdMob', 'CI/CD to store tracks', 'Crashlytics · Analytics', 'Remote Config', 'Tests: unit · bloc · widget'] },
+];
+
+const PRINCIPLES = [
+  { n: '01', t: 'The network is optional.', d: 'Write locally, sync later, show the truth. Field crews and home cooks lose signal in the same way.' },
+  { n: '02', t: 'Secrets live on servers.', d: 'Keys stay behind a proxy with quotas, not in a binary someone can unzip.' },
+  { n: '03', t: 'Go native without fear.', d: 'Widgets, wake words, SSO, cell towers — when Flutter stops, a clean channel starts.' },
+  { n: '04', t: 'Ship behind a flag.', d: 'Every feature can be hidden, teased, enabled or made premium from the console, without a release.' },
+];
+
+/* ==========================================================================
+   INTERFACE STRINGS
+   `m` = muted span, `s` = serif accent; both are plain HTML so titles can
+   mix weights in either language.
+   ========================================================================== */
+
+const m = t => `<span class="text-fog-500">${t}</span>`;
+const s = t => `<span class="serif-i">${t}</span>`;
+const sg = t => `<span class="serif-i text-gradient pe-1">${t}</span>`;
+
+const UI = {
+  en: {
+    'doc.title': 'Koby Mashiach — Senior Mobile Developer',
+    'name': 'Koby Mashiach',
+    'skip': 'Skip to content',
+    'nav.work': 'Work', 'nav.expertise': 'Expertise', 'nav.about': 'About', 'nav.talk': 'Let’s talk',
+    'role': 'Senior Mobile Developer', 'focus': 'Flutter & Dart',
+    'hero.h1': `I build mobile apps<br class="hidden sm:block"> that keep working ${sg('in the field,')}<br class="hidden sm:block"> in the kitchen ${m('and')} ${s('on the store.')}`,
+    'hero.p': `${ME.years} years of Flutter and native mobile work — from offline-first apps that Israel Electric’s field crews rely on, to consumer products I specify, design, build, monetise and ship on my own.`,
+    'hero.cta': 'See the work',
+    'stat.years': 'years in mobile', 'stat.products': 'products in this portfolio', 'stat.surfaces': 'surfaces: phone, tablet, watch, web', 'stat.langs': 'UI languages, RTL native',
+    'hero.shipping': 'Now shipping', 'hero.shippingLine': 'Easy Plate AI · Google Play',
+    'work.label': 'Selected work', 'work.title': `Six products, from the electric grid ${m('to the dinner table.')}`,
+    'flag.label': 'Flagship · end-to-end', 'flag.title': `One engineer.<br>${sg('A whole product.')}`,
+    'flag.points': ['Flutter app with native widgets, share extension and a wake-word assistant', 'Serverless backend with AI proxy, quotas and billing webhooks', 'Web app, SEO site in five languages and an admin console', 'Subscriptions, ads and remote feature flags in production'],
+    'flag.cta': 'Read the case study',
+    'exp.label': 'Expertise', 'exp.title': `What I bring to a team ${m('on day one.')}`,
+    'pr.label': 'How I work', 'pr.title': `Four rules I keep ${s('relearning')} ${m('the hard way.')}`,
+    'about.label': 'About', 'about.title': `Engineer by training, ${s('product builder')} ${m('by habit.')}`,
+    'about.p': [
+      `I’m Koby Mashiach <span class="text-fog-500">(קובי משיח)</span>, a senior mobile developer with ${ME.years} years in mobile and a deep specialisation in Flutter and Dart.`,
+      'By day I build enterprise apps for the energy sector — field tools with offline queues, offline maps, corporate SSO and the reliability crews depend on — and I take part in the design, the architecture, the specification and the requirement sessions with the client, not just the code. In my own time I take my own products — published under the name <span class="text-white">KH Easy Dev</span> — from a blank repo to the store: architecture, native integrations, backend, payments, analytics and the store listing itself.',
+      'I care about the invisible parts — what happens when the network drops, when a purchase completes after the app is closed, when two people edit the same list — because that is where users decide whether to trust an app.',
+    ],
+    'facts': [['Role', 'Senior Mobile Developer · Flutter & Dart'], ['Experience', `${ME.years} years in mobile development`], ['Education', 'Software Practical Engineer'], ['Languages', 'Hebrew · English'], ['Based in', 'Israel']],
+    'also': 'Also on GitHub',
+    'also.items': ['Shared Flutter package · pub.dev', 'Alarm batches in one tap', 'Phone files to Firebase'],
+    'contact.label': 'Contact', 'contact.title': `Looking for my next<br>${sg('mobile role.')}`,
+    'contact.email': 'Email', 'contact.copy': 'Copy address', 'contact.copied': 'Copied', 'contact.phone': 'Phone', 'contact.code': 'Code', 'contact.open': 'Open to senior mobile roles',
+    'footer.line': 'Koby Mashiach · Designed and built by hand.',
+    'p.all': 'All work', 'p.role': 'Role', 'p.platforms': 'Platforms', 'p.status': 'Status', 'p.timeline': 'Timeline', 'p.part': 'My part',
+    'p.screens': 'Screens', 'p.screensTitle': `The product, ${s('in hand.')}`, 'p.scroll': 'Scroll sideways · tap to enlarge',
+    'p.restrictedTitle': 'Screenshots withheld',
+    'p.restricted': 'This is an internal Israel Electric Corp. system. Under the organisation’s information-security policy, screens from the app may not be published. I’m happy to walk through the product and my part in it in an interview.',
+    'p.video': 'Video', 'p.videoTitle': `See it ${s('run.')}`,
+    'p.overview': 'Overview',
+    'p.arch': 'Architecture', 'p.archTitle': `How it is ${s('put together.')}`,
+    'p.eng': 'Engineering', 'p.engTitle': `Hard problems ${m('and how they were solved.')}`,
+    'p.problem': 'Problem', 'p.approach': 'Approach',
+    'p.stack': 'Stack', 'p.stackTitle': `Tools of ${s('this')} trade.`,
+    'p.next': 'Next project',
+    'btn.web': 'Website', 'btn.source': 'Source',
+    'lb.missing': 'No screenshot yet — add',
+  },
+  he: {
+    'doc.title': 'קובי משיח — מפתח מובייל בכיר',
+    'name': 'קובי משיח',
+    'skip': 'דלג לתוכן',
+    'nav.work': 'עבודות', 'nav.expertise': 'מומחיות', 'nav.about': 'אודות', 'nav.talk': 'בואו נדבר',
+    'role': 'מפתח מובייל בכיר', 'focus': 'Flutter & Dart',
+    'hero.h1': `אני בונה אפליקציות<br class="hidden sm:block"> שעובדות ${sg('בשטח,')}<br class="hidden sm:block"> במטבח ${s('ובחנויות.')}`,
+    'hero.p': `${ME.years} שנים של פיתוח Flutter ו-Native — מאפליקציות offline-first שצוותי השטח של חברת החשמל סומכים עליהן, ועד מוצרים צרכניים שאני מאפיין, מעצב, בונה ומוציא לחנויות בעצמי.`,
+    'hero.cta': 'לעבודות',
+    'stat.years': 'שנים במובייל', 'stat.products': 'מוצרים בתיק העבודות', 'stat.surfaces': 'משטחים: טלפון, טאבלט, שעון, ווב', 'stat.langs': 'שפות ממשק, כולל RTL',
+    'hero.shipping': 'באוויר עכשיו', 'hero.shippingLine': 'Easy Plate AI · Google Play',
+    'work.label': 'עבודות נבחרות', 'work.title': `שישה מוצרים, מרשת החשמל ${m('ועד שולחן האוכל.')}`,
+    'flag.label': 'מוצר הדגל · מקצה לקצה', 'flag.title': `מפתח אחד.<br>${sg('מוצר שלם.')}`,
+    'flag.points': ['אפליקציית Flutter עם ווידג׳טים נייטיב, Share Extension ועוזר עם מילת הפעלה', 'Backend ללא שרתים עם פרוקסי AI, מכסות ו-webhooks לחיוב', 'אפליקציית ווב, אתר SEO בחמש שפות וקונסולת ניהול', 'מנויים, מודעות ופיצ׳ר פלאגים מרחוק בפרודקשן'],
+    'flag.cta': 'לסיפור המלא',
+    'exp.label': 'מומחיות', 'exp.title': `מה אני מביא לצוות ${m('כבר מהיום הראשון.')}`,
+    'pr.label': 'איך אני עובד', 'pr.title': `ארבעה כללים ${s('שלמדתי')} ${m('בדרך הקשה.')}`,
+    'about.label': 'אודות', 'about.title': `הנדסאי בהכשרה, ${s('בונה מוצרים')} ${m('מתוך הרגל.')}`,
+    'about.p': [
+      `אני קובי משיח, מפתח מובייל בכיר עם ${ME.years} שנות ניסיון ומומחיות עמוקה ב-Flutter וב-Dart.`,
+      'ביום-יום אני בונה אפליקציות ארגוניות לתחום האנרגיה — כלי שטח עם תורי offline, מפות offline, SSO ארגוני והאמינות שצוותים בשטח תלויים בה — ולוקח חלק בעיצוב, בארכיטקטורה, באפיון ובשיחות הדרישות מול הלקוח, לא רק בקוד. בזמני הפנוי אני לוקח מוצרים משלי — שמתפרסמים תחת השם <span class="text-white">KH Easy Dev</span> — מ-repo ריק ועד החנויות: ארכיטקטורה, אינטגרציות Native, backend, תשלומים, אנליטיקה ועמוד החנות עצמו.',
+      'חשובים לי החלקים הבלתי נראים — מה קורה כשהרשת נופלת, כשרכישה מסתיימת אחרי שהאפליקציה נסגרה, כששני אנשים עורכים את אותה רשימה — כי שם משתמשים מחליטים אם לסמוך על אפליקציה.',
+    ],
+    'facts': [['תפקיד', 'Senior Mobile Developer · Flutter & Dart'], ['ניסיון', `${ME.years} שנים בפיתוח מובייל`], ['השכלה', 'הנדסאי תוכנה'], ['שפות', 'עברית · אנגלית'], ['מיקום', 'ישראל']],
+    'also': 'עוד ב-GitHub',
+    'also.items': ['חבילת Flutter משותפת · pub.dev', 'סט שעונים מעוררים בלחיצה', 'גיבוי קבצי הטלפון ל-Firebase'],
+    'contact.label': 'יצירת קשר', 'contact.title': `מחפש את התפקיד<br>${sg('הבא שלי במובייל.')}`,
+    'contact.email': 'מייל', 'contact.copy': 'העתקת הכתובת', 'contact.copied': 'הועתק', 'contact.phone': 'טלפון', 'contact.code': 'קוד', 'contact.open': 'פתוח להצעות לתפקידי מובייל בכירים',
+    'footer.line': 'קובי משיח · עוצב ונבנה בעבודת יד.',
+    'p.all': 'כל העבודות', 'p.role': 'תפקיד', 'p.platforms': 'פלטפורמות', 'p.status': 'סטטוס', 'p.timeline': 'זמנים', 'p.part': 'החלק שלי',
+    'p.screens': 'מסכים', 'p.screensTitle': `המוצר, ${s('ביד.')}`, 'p.scroll': 'גללו הצידה · הקישו להגדלה',
+    'p.restrictedTitle': 'צילומי מסך לא מפורסמים',
+    'p.restricted': 'זו מערכת פנימית של חברת החשמל. לפי מדיניות אבטחת המידע של הארגון אסור לפרסם מסכים מהאפליקציה. אשמח להציג את המוצר ואת החלק שלי בו בראיון.',
+    'p.video': 'וידאו', 'p.videoTitle': `לראות את זה ${s('רץ.')}`,
+    'p.overview': 'סקירה',
+    'p.arch': 'ארכיטקטורה', 'p.archTitle': `איך זה ${s('בנוי.')}`,
+    'p.eng': 'הנדסה', 'p.engTitle': `בעיות קשות ${m('ואיך פתרתי אותן.')}`,
+    'p.problem': 'בעיה', 'p.approach': 'הפתרון',
+    'p.stack': 'טכנולוגיות', 'p.stackTitle': `הכלים ${s('של')} הפרויקט.`,
+    'p.next': 'הפרויקט הבא',
+    'btn.web': 'אתר', 'btn.source': 'קוד מקור',
+    'lb.missing': 'אין עדיין צילום מסך — הוסיפו',
+  },
+};
+
+/* ==========================================================================
+   LANGUAGE
+   English by default. ?lang=he or the switch picks Hebrew; the choice is
+   remembered on this device only.
+   ========================================================================== */
+
+const LANG_KEY = 'kmp-lang';
+let LANG = 'en';
+try {
+  const q = new URLSearchParams(location.search).get('lang');
+  LANG = q === 'he' || q === 'en' ? q : (localStorage.getItem(LANG_KEY) === 'he' ? 'he' : 'en');
+} catch (_) {}
+if (!window.HE) LANG = 'en';
+
+const t = k => (UI[LANG] && UI[LANG][k] !== undefined ? UI[LANG][k] : UI.en[k]);
+
+// a project with its Hebrew fields laid over the English ones
+function loc(p) {
+  if (LANG !== 'he') return p;
+  const h = (window.HE && HE.projects[p.slug]) || {};
+  const { stackGroups, videoCaps, links, ...rest } = h;
+  return {
+    ...p,
+    ...rest,
+    links: { ...p.links, ...(links || {}) },
+    stack: Object.fromEntries(Object.entries(p.stack).map(([g, items]) => [(stackGroups && stackGroups[g]) || g, items])),
+    videos: p.videos && p.videos.map((v, i) => ({ ...v, cap: (videoCaps && videoCaps[i]) || v.cap })),
+  };
+}
+const capOf = it => (LANG === 'he' && it.capHe) || it.cap;
+const expertise = () => (LANG === 'he' && window.HE ? HE.expertise : EXPERTISE);
+const principles = () => (LANG === 'he' && window.HE ? HE.principles : PRINCIPLES);
+
+/* ==========================================================================
+   HELPERS
+   ========================================================================== */
+
+const $ = (sel, el = document) => el.querySelector(sel);
+const esc = v => String(v).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+const icons = {
+  arrow: '<svg class="flip" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+  arrowUR: '<svg class="flip" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>',
+  back: '<svg class="flip" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>',
+  apple: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16.37 12.6c-.02-2.2 1.8-3.26 1.88-3.31-1.03-1.5-2.62-1.7-3.18-1.73-1.35-.14-2.64.8-3.33.8-.69 0-1.74-.78-2.87-.76-1.47.02-2.83.86-3.59 2.18-1.53 2.66-.39 6.6 1.1 8.76.73 1.06 1.6 2.24 2.73 2.2 1.1-.04 1.51-.71 2.84-.71 1.32 0 1.7.71 2.86.69 1.18-.02 1.93-1.07 2.65-2.13.83-1.22 1.18-2.41 1.2-2.47-.03-.01-2.3-.88-2.32-3.5zM14.2 6.13c.6-.73 1.01-1.75.9-2.76-.87.04-1.92.58-2.54 1.31-.56.65-1.05 1.68-.92 2.67.97.08 1.96-.49 2.56-1.22z"/></svg>',
+  play: '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.2 2.6c-.25.26-.4.67-.4 1.2v16.4c0 .53.15.94.4 1.2l.06.06 9.2-9.2v-.22l-9.2-9.2-.06.06zm12.3 12.37-3.06-3.07v-.22l3.07-3.07.07.04 3.63 2.06c1.04.59 1.04 1.55 0 2.14l-3.63 2.07-.08.05zm-.08.04L13.3 11.9 4.2 21c.34.36.9.4 1.53.05l10.69-6.04m0-6.02L5.73 2.95c-.63-.36-1.19-.31-1.53.05l9.1 9.1 3.13-3.11z"/></svg>',
+  github: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg>',
+  globe: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg>',
+  lock: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>',
+  clock: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+  shield: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/><path d="M9.5 12l1.8 1.8L15 10"/></svg>',
+  copy: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>',
+  image: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" class="text-fog-500"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>',
+  playBig: '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>',
+};
+
+function projectIcon(p, size = 'h-12 w-12', radius = 'rounded-[14px]') {
+  if (p.icon) return `<img src="${p.icon}" alt="" class="${size} ${radius} object-contain bg-white/[.03] p-1 border hairline" loading="lazy">`;
+  return `<span class="${size} ${radius} grid place-items-center border hairline bg-gradient-to-br from-ink-700 to-ink-900 font-mono text-[13px] tracking-wider text-neon-cyan" dir="ltr">${esc(p.monogram || p.name[0])}</span>`;
+}
+
+// an <img> that becomes a labelled empty slot if the file is missing
+function shot(src, cap) {
+  const slot = `<div class="slot">${icons.image}<span class="text-[12px] text-fog-400">${esc(cap)}</span><code>${esc(src)}</code></div>`;
+  return `<img src="${src}" alt="${esc(cap)}" loading="lazy" decoding="async" data-slot="${encodeURIComponent(slot)}" onerror="this.outerHTML=decodeURIComponent(this.dataset.slot)">`;
+}
+
+function phoneFrame(item, idx, group) {
+  const cap = capOf(item);
+  return `<button type="button" class="group block w-[200px] sm:w-[230px] text-start" data-lb="${group}" data-idx="${idx}" aria-label="${esc(cap)}">
+      <div class="phone transition-transform duration-500 group-hover:-translate-y-1.5">
+        <span class="btn-side"></span>
+        <div class="screen">${shot(item.src, cap)}</div>
+      </div>
+      <p class="mt-4 text-center label">${esc(cap)}</p>
+    </button>`;
+}
+function browserFrame(item, idx, group, url) {
+  const cap = capOf(item);
+  return `<button type="button" class="group block w-[320px] sm:w-[560px] text-start" data-lb="${group}" data-idx="${idx}" aria-label="${esc(cap)}">
+      <div class="browser transition-transform duration-500 group-hover:-translate-y-1.5">
+        <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">${esc(url || '')}</span></div>
+        <div class="screen">${shot(item.src, cap)}</div>
+      </div>
+      <p class="mt-4 text-center label">${esc(cap)}</p>
+    </button>`;
+}
+
+function linkButtons(p) {
+  const L = p.links || {};
+  const out = [];
+  if (L.appStore) out.push(`<a class="btn btn-primary" href="${L.appStore}" target="_blank" rel="noopener">${icons.apple}App Store</a>`);
+  if (L.play) out.push(`<a class="btn ${L.appStore ? 'btn-ghost' : 'btn-primary'}" href="${L.play}" target="_blank" rel="noopener">${icons.play}Google Play</a>`);
+  if (L.web) out.push(`<a class="btn btn-ghost" href="${L.web}" target="_blank" rel="noopener">${icons.globe}${t('btn.web')}</a>`);
+  if (L.github) out.push(`<a class="btn btn-ghost" href="${L.github}" target="_blank" rel="noopener">${icons.github}${t('btn.source')}</a>`);
+  if (L.soon) out.push(`<span class="btn btn-disabled">${icons.clock}${esc(L.soon)}</span>`);
+  if (L.private) out.push(`<span class="btn btn-disabled">${icons.lock}${esc(L.private)}</span>`);
+  return out.join('');
+}
+
+const section = (id, label, title, body, extra = '') => `
+  <section id="${id}" class="relative border-t hairline ${extra}">
+    <div class="mx-auto max-w-7xl px-4 py-20 sm:px-8 sm:py-28">
+      <div class="reveal mb-12 grid gap-4 md:mb-16 md:grid-cols-12">
+        <p class="label md:col-span-3">${label}</p>
+        <h2 class="text-[32px] leading-[1.05] tracking-[-0.03em] font-medium sm:text-[44px] md:col-span-9">${title}</h2>
+      </div>
+      ${body}
+    </div>
+  </section>`;
+
+/* ==========================================================================
+   VIEWS
+   ========================================================================== */
+
+function viewHome() {
+  const flagship = loc(PROJECTS.find(x => x.slug === 'easy-plate'));
+  const marqueeItems = ['Flutter', 'Dart', 'BLoC', 'Riverpod', 'Kotlin', 'Swift', 'Firebase', 'Cloud Functions', 'Gemini', 'Hive', 'sqflite', 'MapLibre', 'WidgetKit', 'Wear OS', 'RevenueCat', 'FastAPI', 'Supabase', 'Okta', 'MSAL', 'GitHub Actions'];
+  const marquee = [...marqueeItems, ...marqueeItems].map(x => `<span class="mx-6 inline-flex items-center gap-6 whitespace-nowrap text-[15px] text-fog-400">${esc(x)}<span class="h-1 w-1 rounded-full bg-fog-500/60"></span></span>`).join('');
+
+  const rows = PROJECTS.map(loc).map((p, i) => `
+    <a href="#/work/${p.slug}" class="row-link group block border-b hairline" data-peek="${p.screens.items[0] ? p.screens.items[0].src : ''}" data-peek-frame="${p.screens.frame}">
+      <div class="grid grid-cols-12 items-center gap-4 py-7 sm:py-9">
+        <span class="col-span-2 sm:col-span-1 font-mono text-[12px] text-fog-500">${String(i + 1).padStart(2, '0')}</span>
+        <div class="col-span-10 sm:col-span-6 flex items-center gap-4">
+          ${projectIcon(p, 'h-11 w-11 shrink-0', 'rounded-[12px]')}
+          <div class="row-title">
+            <h3 class="text-[22px] sm:text-[30px] font-medium tracking-[-0.02em] leading-tight group-hover:text-white"><bdi>${esc(p.name)}</bdi></h3>
+            <p class="mt-1 text-[13.5px] text-fog-400 line-clamp-1 sm:hidden">${esc(p.kind)}</p>
+          </div>
+        </div>
+        <p class="hidden sm:block sm:col-span-3 text-[13.5px] text-fog-400">${esc(p.kind)}</p>
+        <div class="hidden sm:flex sm:col-span-2 items-center justify-end gap-4">
+          <span class="font-mono text-[12px] text-fog-500">${esc(p.year)}</span>
+          <span class="row-arrow">${icons.arrow}</span>
+        </div>
+      </div>
+    </a>`).join('');
+
+  const exp = expertise().map(e => `
+    <div class="glow reveal rounded-3xl border hairline bg-ink-900/60 p-7">
+      <h3 class="text-[19px] font-medium tracking-tight">${esc(e.t)}</h3>
+      <p class="mt-2 text-[14px] leading-relaxed text-fog-400">${esc(e.d)}</p>
+      <ul class="mt-6 flex flex-wrap gap-2">${e.items.map(x => `<li class="rounded-full border hairline px-3 py-1 text-[12.5px] text-fog-300">${esc(x)}</li>`).join('')}</ul>
+    </div>`).join('');
+
+  const pr = principles().map(p => `
+    <div class="reveal grid gap-3 border-t hairline py-8 md:grid-cols-12">
+      <span class="font-mono text-[12px] text-neon-cyan md:col-span-1">${p.n}</span>
+      <h3 class="text-[24px] sm:text-[28px] tracking-[-0.02em] md:col-span-5"><span class="serif-i text-[30px] sm:text-[34px]">${esc(p.t)}</span></h3>
+      <p class="text-[15px] leading-relaxed text-fog-400 md:col-span-6 md:pt-2">${esc(p.d)}</p>
+    </div>`).join('');
+
+  return `
+  <!-- HERO -->
+  <section class="relative overflow-hidden">
+    <div class="pointer-events-none absolute inset-0 aurora"></div>
+    <div class="pointer-events-none absolute inset-0 gridlines"></div>
+    <div class="relative mx-auto grid max-w-7xl gap-14 px-4 pb-20 pt-36 sm:px-8 lg:grid-cols-12 lg:gap-8 lg:pb-28 lg:pt-44">
+      <div class="lg:col-span-7">
+        <p class="reveal flex items-center gap-3 label">
+          <span class="h-px w-8 bg-neon-cyan/60"></span>${esc(t('role'))} · ${esc(t('focus'))}
+        </p>
+        <h1 class="reveal mt-7 text-[44px] leading-[0.98] tracking-[-0.045em] font-medium sm:text-[68px] lg:text-[82px]">${t('hero.h1')}</h1>
+        <p class="reveal mt-8 max-w-[560px] text-[17px] leading-relaxed text-fog-300">${esc(t('hero.p'))}</p>
+        <div class="reveal mt-10 flex flex-wrap items-center gap-3">
+          <a href="#/work" class="btn btn-primary">${t('hero.cta')} ${icons.arrow}</a>
+          <a href="mailto:${ME.email}" class="btn btn-ghost ltr">${esc(ME.email)}</a>
+        </div>
+        <dl class="reveal mt-16 grid max-w-[620px] grid-cols-2 gap-x-8 gap-y-8 sm:grid-cols-4">
+          ${[
+            [ME.years + '', t('stat.years')],
+            [PROJECTS.length + '', t('stat.products')],
+            ['4', t('stat.surfaces')],
+            ['5', t('stat.langs')],
+          ].map(([v, k]) => `<div><dt class="text-[34px] font-medium tracking-[-0.04em]">${v}</dt><dd class="mt-1 text-[12.5px] leading-snug text-fog-400">${k}</dd></div>`).join('')}
+        </dl>
+      </div>
+
+      <!-- device composition -->
+      <div class="relative hidden h-[620px] lg:col-span-5 lg:block" aria-hidden="true" dir="ltr">
+        <div class="absolute left-[4%] top-[8%] w-[230px] -rotate-6 float-a opacity-80">
+          <div class="phone"><div class="screen">${shot(flagship.hero[0], '')}</div></div>
+        </div>
+        <div class="absolute right-[2%] top-0 w-[260px] rotate-[5deg] float-b">
+          <div class="phone"><span class="btn-side"></span><div class="screen">${shot(flagship.hero[1], '')}</div></div>
+        </div>
+        <div class="absolute bottom-[4%] left-[18%] rounded-2xl border hairline bg-ink-900/80 px-4 py-3 backdrop-blur-xl shadow-2xl" dir="${LANG === 'he' ? 'rtl' : 'ltr'}">
+          <p class="label !text-[10px]">${t('hero.shipping')}</p>
+          <p class="mt-1 flex items-center gap-2 text-[14px]">${projectIcon(flagship, 'h-6 w-6', 'rounded-md')} <span dir="ltr">${t('hero.shippingLine')}</span></p>
+        </div>
+        <div class="pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-neon-cyan/10 blur-[110px]"></div>
+      </div>
+    </div>
+
+    <div class="marquee relative border-y hairline py-5 overflow-hidden"><div class="marquee-track">${marquee}</div></div>
+  </section>
+
+  ${section('work', t('work.label'), t('work.title'), `<div class="border-t hairline">${rows}</div>`)}
+
+  <!-- FLAGSHIP FEATURE -->
+  <section class="relative border-t hairline overflow-hidden">
+    <div class="pointer-events-none absolute -right-40 top-10 h-[500px] w-[500px] rounded-full bg-neon-blue/10 blur-[120px]"></div>
+    <div class="relative mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-8 sm:py-28 lg:grid-cols-12">
+      <div class="lg:col-span-5">
+        <p class="reveal label">${t('flag.label')}</p>
+        <h2 class="reveal mt-5 text-[34px] leading-[1.05] tracking-[-0.03em] font-medium sm:text-[46px]">${t('flag.title')}</h2>
+        <p class="reveal mt-6 text-[16px] leading-relaxed text-fog-300">${esc(flagship.summary[0])}</p>
+        <ul class="reveal mt-8 space-y-3 text-[14.5px] text-fog-300">
+          ${t('flag.points').map(x => `<li class="flex gap-3"><span class="mt-[9px] h-1 w-3 shrink-0 rounded-full bg-neon-cyan/70"></span>${esc(x)}</li>`).join('')}
+        </ul>
+        <div class="reveal mt-10 flex flex-wrap gap-3">
+          <a href="#/work/${flagship.slug}" class="btn btn-primary">${t('flag.cta')} ${icons.arrow}</a>
+          ${flagship.links.play ? `<a class="btn btn-ghost" href="${flagship.links.play}" target="_blank" rel="noopener">${icons.play}Google Play</a>` : ''}
+          ${flagship.links.web ? `<a class="btn btn-ghost" href="${flagship.links.web}" target="_blank" rel="noopener">${icons.globe}${t('btn.web')}</a>` : ''}
+        </div>
+      </div>
+      <div class="reveal lg:col-span-7">
+        <div class="rail !py-2 lg:ps-6">
+          ${flagship.screens.items.slice(1, 6).map((it, i) => phoneFrame(it, i + 1, flagship.slug)).join('')}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  ${section('expertise', t('exp.label'), t('exp.title'), `<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">${exp}</div>`)}
+
+  ${section('principles', t('pr.label'), t('pr.title'), `<div>${pr}</div>`)}
+
+  ${viewAboutBlock()}
+  ${viewContactBlock()}
+  `;
+}
+
+function viewAboutBlock() {
+  const also = [
+    ['kh_easy_dev', 'https://pub.dev/packages/kh_easy_dev'],
+    ['Easy Clock', 'https://github.com/KobyMashiach/Easy-Clock'],
+    ['Backup Your Phone', 'https://github.com/KobyMashiach/Backup-Your-Phone'],
+  ];
+  return section('about', t('about.label'), t('about.title'), `
+    <div class="grid gap-12 md:grid-cols-12">
+      <div class="reveal md:col-span-7 space-y-5 text-[16.5px] leading-relaxed text-fog-300">
+        ${t('about.p').map(x => `<p>${x}</p>`).join('')}
+      </div>
+      <div class="reveal md:col-span-5 space-y-4">
+        ${t('facts').map(([k, v]) => `<div class="flex items-baseline justify-between gap-6 border-b hairline pb-4"><span class="label">${k}</span><span class="text-end text-[14.5px]">${esc(v)}</span></div>`).join('')}
+        <div class="pt-4">
+          <p class="label mb-4">${t('also')}</p>
+          <div class="flex flex-wrap gap-2">
+            ${also.map(([n, u], i) => `<a href="${u}" target="_blank" rel="noopener" class="group rounded-2xl border hairline px-4 py-3 hover:border-neon-cyan/40"><span class="flex items-center gap-2 text-[14px]" dir="ltr">${n}<span class="text-fog-500 group-hover:text-neon-cyan">${icons.arrowUR}</span></span><span class="block text-[12px] text-fog-500">${esc(t('also.items')[i])}</span></a>`).join('')}
+          </div>
+        </div>
+      </div>
+    </div>`);
+}
+
+function viewContactBlock() {
+  return `
+  <section id="contact" class="relative overflow-hidden border-t hairline">
+    <div class="pointer-events-none absolute inset-0 aurora opacity-80"></div>
+    <div class="relative mx-auto max-w-7xl px-4 py-24 sm:px-8 sm:py-36">
+      <p class="reveal label">${t('contact.label')}</p>
+      <h2 class="reveal mt-6 text-[44px] leading-[0.98] tracking-[-0.045em] font-medium sm:text-[76px] lg:text-[96px]">${t('contact.title')}</h2>
+      <div class="reveal mt-14 grid gap-4 md:grid-cols-3">
+        <div class="glow rounded-3xl border hairline bg-ink-900/70 p-6">
+          <p class="label">${t('contact.email')}</p>
+          <a href="mailto:${ME.email}" class="mt-3 block break-all text-[20px] tracking-tight hover:text-neon-cyan ltr">${esc(ME.email)}</a>
+          <button type="button" data-copy="${ME.email}" class="mt-5 inline-flex items-center gap-2 text-[13px] text-fog-400 hover:text-white">${icons.copy}<span>${t('contact.copy')}</span></button>
+        </div>
+        <div class="glow rounded-3xl border hairline bg-ink-900/70 p-6">
+          <p class="label">${t('contact.phone')}</p>
+          <a href="tel:${ME.phoneIntl}" class="mt-3 block text-[20px] tracking-tight hover:text-neon-cyan ltr">${esc(ME.phone)}</a>
+          <a href="https://wa.me/${ME.phoneIntl.replace('+', '')}" target="_blank" rel="noopener" class="mt-5 inline-flex items-center gap-2 text-[13px] text-fog-400 hover:text-white">WhatsApp ${icons.arrowUR}</a>
+        </div>
+        <div class="glow rounded-3xl border hairline bg-ink-900/70 p-6">
+          <p class="label">${t('contact.code')}</p>
+          <a href="${ME.github}" target="_blank" rel="noopener" class="mt-3 flex items-center gap-2 text-[20px] tracking-tight hover:text-neon-cyan">${icons.github} <span class="ltr">KobyMashiach</span></a>
+          <span class="mt-5 inline-flex items-center gap-2 text-[13px] text-fog-400"><span class="h-1.5 w-1.5 rounded-full bg-neon-cyan pulse-dot"></span>${t('contact.open')}</span>
+        </div>
+      </div>
+    </div>
+  </section>`;
+}
+
+function viewScreens(p) {
+  const S = p.screens;
+  if (S.restricted) {
+    return `
+    <section class="border-t hairline overflow-hidden">
+      <div class="mx-auto max-w-7xl px-4 py-20 sm:px-8">
+        <p class="label">${t('p.screens')}</p>
+        <div class="reveal mt-8 grid items-center gap-10 rounded-3xl border hairline bg-ink-900/60 p-6 sm:p-10 md:grid-cols-12">
+          <div class="relative mx-auto h-[260px] w-[240px] md:col-span-4" aria-hidden="true" dir="ltr">
+            ${[[-10, 0, '.45'], [0, 40, '.7'], [10, 80, '1']].map(([r, x, o]) => `
+              <div class="absolute top-2 w-[120px] phone" style="left:${x}px; transform: rotate(${r}deg); opacity:${o}">
+                <div class="screen sealed grid place-items-center text-fog-500">${icons.lock}</div>
+              </div>`).join('')}
+          </div>
+          <div class="md:col-span-8">
+            <span class="grid h-12 w-12 place-items-center rounded-2xl border border-neon-cyan/25 bg-neon-cyan/[.06] text-neon-cyan">${icons.shield}</span>
+            <h3 class="mt-5 text-[24px] sm:text-[30px] font-medium tracking-[-0.02em]">${t('p.restrictedTitle')}</h3>
+            <p class="mt-4 max-w-[620px] text-[15.5px] leading-relaxed text-fog-300">${t('p.restricted')}</p>
+          </div>
+        </div>
+      </div>
+    </section>`;
+  }
+  const gallery = S.frame === 'browser'
+    ? S.items.map((it, k) => browserFrame(it, k, p.slug, S.url)).join('')
+    : S.items.map((it, k) => phoneFrame(it, k, p.slug)).join('');
+  const note = (LANG === 'he' && S.noteHe) || S.note;
+  return `
+    <section class="border-t hairline overflow-hidden">
+      <div class="mx-auto max-w-7xl px-4 pt-20 sm:px-8">
+        <div class="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p class="label">${t('p.screens')}</p>
+            <h2 class="mt-3 text-[30px] sm:text-[38px] font-medium tracking-[-0.03em]">${t('p.screensTitle')}</h2>
+          </div>
+          <p class="text-[13px] text-fog-500">${note ? esc(note) + ' · ' : ''}${t('p.scroll')}</p>
+        </div>
+      </div>
+      <div class="mx-auto max-w-7xl px-4 sm:px-8"><div class="rail mt-8">${gallery}</div></div>
+    </section>`;
+}
+
+function viewVideos(p) {
+  if (!p.videos || !p.videos.length) return '';
+  return `
+    <section class="border-t hairline">
+      <div class="mx-auto max-w-7xl px-4 py-20 sm:px-8">
+        <p class="label">${t('p.video')}</p>
+        <h2 class="mt-3 text-[30px] sm:text-[38px] font-medium tracking-[-0.03em]">${t('p.videoTitle')}</h2>
+        <div class="mt-10 grid gap-6 lg:grid-cols-2">
+          ${p.videos.map(v => `
+            <figure class="video-card reveal">
+              <div class="browser relative">
+                <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="url">${esc(v.cap)} · ${esc(v.len)}</span></div>
+                <video preload="none" playsinline controls poster="${v.poster}" aria-label="${esc(v.cap)}"><source src="${v.src}" type="video/mp4"></video>
+                <button type="button" class="play-cover absolute inset-0 top-[34px] grid place-items-center bg-black/25" aria-label="${esc(v.cap)}">
+                  <span class="play-badge grid h-16 w-16 place-items-center rounded-full bg-white/90 text-ink-950 shadow-2xl ps-1">${icons.playBig}</span>
+                </button>
+              </div>
+              <figcaption class="mt-4 flex items-center justify-between label"><span>${esc(v.cap)}</span><span class="ltr">${esc(v.len)}</span></figcaption>
+            </figure>`).join('')}
+        </div>
+      </div>
+    </section>`;
+}
+
+function viewProject(raw) {
+  const p = loc(raw);
+  const i = PROJECTS.indexOf(raw);
+  const next = loc(PROJECTS[(i + 1) % PROJECTS.length]);
+
+  const meta = [
+    [t('p.role'), p.role],
+    [t('p.platforms'), p.platforms.join(' · ')],
+    [t('p.status'), p.status],
+    [t('p.timeline'), p.year],
+  ];
+
+  const part = p.contribution ? `
+    <div class="mt-6 flex flex-wrap items-center gap-2">
+      <span class="label me-2">${t('p.part')}</span>
+      ${p.contribution.map(x => `<span class="rounded-full border border-neon-cyan/20 bg-neon-cyan/[.04] px-3 py-1 text-[13px] text-fog-100">${esc(x)}</span>`).join('')}
+    </div>` : '';
+
+  const arch = p.architecture.map((l, k) => `
+    <div class="layer reveal grid items-start gap-3 sm:grid-cols-12 ${k ? 'mt-4' : ''}">
+      <div class="sm:col-span-3 flex items-center gap-3 pt-2">
+        <span class="grid h-[30px] w-[30px] shrink-0 place-items-center rounded-full border border-neon-cyan/30 bg-neon-cyan/5 font-mono text-[11px] text-neon-cyan">${k + 1}</span>
+        <span class="text-[14.5px] font-medium">${esc(l.name)}</span>
+      </div>
+      <div class="sm:col-span-9 flex flex-wrap gap-2 rounded-2xl border hairline bg-ink-900/60 p-3">
+        ${l.items.map(x => `<span class="rounded-lg bg-white/[.035] px-3 py-1.5 text-[13px] text-fog-300">${esc(x)}</span>`).join('')}
+      </div>
+    </div>`).join('');
+
+  const challenges = p.challenges.map((c, k) => `
+    <div class="glow reveal grid gap-6 rounded-3xl border hairline bg-ink-900/60 p-6 sm:p-8 md:grid-cols-12">
+      <div class="md:col-span-5">
+        <p class="label">${t('p.problem')} ${String(k + 1).padStart(2, '0')}</p>
+        <p class="mt-3 text-[19px] leading-snug tracking-tight">${esc(c.p)}</p>
+      </div>
+      <div class="md:col-span-7 md:border-s md:border-white/[.07] md:ps-8">
+        <p class="label !text-neon-cyan/80">${t('p.approach')}</p>
+        <p class="mt-3 text-[15px] leading-relaxed text-fog-300">${esc(c.s)}</p>
+      </div>
+    </div>`).join('');
+
+  const stack = Object.entries(p.stack).map(([g, items]) => `
+    <div class="reveal border-t hairline py-5 grid gap-3 sm:grid-cols-12">
+      <span class="label sm:col-span-3 pt-1">${esc(g)}</span>
+      <div class="sm:col-span-9 flex flex-wrap gap-2">${items.map(x => `<span class="rounded-full border hairline px-3 py-1 text-[13px] text-fog-300">${esc(x)}</span>`).join('')}</div>
+    </div>`).join('');
+
+  return `
+  <article>
+    <!-- header -->
+    <section class="relative overflow-hidden">
+      <div class="pointer-events-none absolute inset-0 aurora"></div>
+      <div class="pointer-events-none absolute inset-0 gridlines"></div>
+      <div class="relative mx-auto max-w-7xl px-4 pb-16 pt-32 sm:px-8 sm:pt-40">
+        <a href="#/work" class="inline-flex items-center gap-2 text-[13.5px] text-fog-400 hover:text-white">${icons.back} ${t('p.all')}</a>
+        <div class="mt-10 flex flex-wrap items-center gap-4">
+          ${projectIcon(p, 'h-16 w-16', 'rounded-[18px]')}
+          <span class="rounded-full border border-neon-cyan/25 bg-neon-cyan/[.06] px-3 py-1 chip font-mono text-[11px] uppercase tracking-[.12em] text-neon-cyan">${esc(p.kind)}</span>
+        </div>
+        <h1 class="mt-8 text-[48px] leading-[0.95] tracking-[-0.045em] font-medium sm:text-[80px] lg:text-[104px]"><bdi>${esc(p.name)}</bdi></h1>
+        <p class="mt-6 max-w-[760px] text-[19px] leading-relaxed text-fog-300 sm:text-[22px]">${esc(p.tagline)}</p>
+        <div class="mt-10 flex flex-wrap gap-3">${linkButtons(p)}</div>
+        ${part}
+
+        <dl class="mt-14 grid gap-px overflow-hidden rounded-3xl border hairline bg-white/[.06] sm:grid-cols-2 lg:grid-cols-4">
+          ${meta.map(([k, v]) => `<div class="bg-ink-950 p-6"><dt class="label">${k}</dt><dd class="mt-2 text-[14.5px] leading-snug">${esc(v)}</dd></div>`).join('')}
+        </dl>
+      </div>
+    </section>
+
+    <!-- metrics -->
+    <section class="border-t hairline">
+      <div class="mx-auto grid max-w-7xl grid-cols-2 lg:grid-cols-4 px-4 sm:px-8">
+        ${p.metrics.map((mt, k) => `<div class="reveal py-10 pe-6 ${k % 2 ? 'ps-6 border-s hairline' : ''} ${k >= 2 ? 'border-t lg:border-t-0 hairline' : ''} ${k === 2 ? 'lg:ps-6 lg:border-s' : ''}">
+          <p class="text-[30px] sm:text-[40px] font-medium tracking-[-0.04em]"><bdi>${esc(mt.v)}</bdi></p>
+          <p class="mt-1 text-[13px] text-fog-400">${esc(mt.k)}</p></div>`).join('')}
+      </div>
+    </section>
+
+    ${viewVideos(p)}
+    ${viewScreens(p)}
+
+    <!-- overview + highlights -->
+    <section class="border-t hairline">
+      <div class="mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-8 sm:py-28 lg:grid-cols-12">
+        <div class="lg:col-span-4">
+          <p class="reveal label">${t('p.overview')}</p>
+          <div class="reveal mt-5 space-y-5 text-[16px] leading-relaxed text-fog-300 lg:sticky lg:top-28">
+            ${p.summary.map(x => `<p>${esc(x)}</p>`).join('')}
+          </div>
+        </div>
+        <div class="lg:col-span-8 grid gap-4 sm:grid-cols-2">
+          ${p.highlights.map((h, k) => `
+            <div class="glow reveal rounded-3xl border hairline bg-ink-900/60 p-7">
+              <span class="font-mono text-[11px] text-neon-cyan/80">${String(k + 1).padStart(2, '0')}</span>
+              <h3 class="mt-4 text-[18.5px] font-medium tracking-tight">${esc(h.t)}</h3>
+              <p class="mt-3 text-[14.5px] leading-relaxed text-fog-400">${esc(h.d)}</p>
+            </div>`).join('')}
+        </div>
+      </div>
+    </section>
+
+    ${section('architecture', t('p.arch'), t('p.archTitle'), `<div class="max-w-5xl">${arch}</div>`)}
+    ${section('challenges', t('p.eng'), t('p.engTitle'), `<div class="space-y-4">${challenges}</div>`)}
+    ${section('stack', t('p.stack'), t('p.stackTitle'), `<div class="border-b hairline">${stack}</div>`)}
+
+    <!-- next -->
+    <a href="#/work/${next.slug}" class="group block border-t hairline">
+      <div class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-16 sm:px-8 sm:py-24">
+        <div>
+          <p class="label">${t('p.next')}</p>
+          <p class="mt-4 text-[40px] sm:text-[72px] font-medium tracking-[-0.04em] leading-none transition-transform duration-500 group-hover:translate-x-3 rtl:group-hover:-translate-x-3"><bdi>${esc(next.name)}</bdi></p>
+          <p class="mt-4 text-[14px] text-fog-400">${esc(next.kind)}</p>
+        </div>
+        <span class="grid h-16 w-16 shrink-0 place-items-center rounded-full border hairline transition-all duration-500 group-hover:border-neon-cyan/50 group-hover:bg-neon-cyan/10 group-hover:text-neon-cyan">${icons.arrow}</span>
+      </div>
+    </a>
+  </article>`;
+}
+
+/* ==========================================================================
+   ROUTER
+   #/                → home
+   #/work | #/expertise | #/about | #/contact → home, scrolled to that section
+   #/work/<slug>     → project page
+   ========================================================================== */
+
+let currentKey = null;
+
+function parse() {
+  const h = location.hash.replace(/^#\/?/, '');
+  const parts = h.split('/').filter(Boolean);
+  if (parts[0] === 'work' && parts[1]) {
+    const p = PROJECTS.find(x => x.slug === parts[1]);
+    if (p) return { key: 'p:' + p.slug, project: p };
+  }
+  return { key: 'home', anchor: parts[0] || null };
+}
+
+function render() {
+  const r = parse();
+  const main = $('#main');
+  const same = r.key === currentKey;
+
+  const apply = () => {
+    if (!same) {
+      main.innerHTML = r.project ? viewProject(r.project) : viewHome();
+      document.title = r.project ? `${r.project.name} — ${t('name')}` : t('doc.title');
+      currentKey = r.key;
+      wire();
+    }
+    if (r.anchor) {
+      const el = document.getElementById(r.anchor);
+      if (el) requestAnimationFrame(() => el.scrollIntoView({ behavior: same ? 'smooth' : 'auto', block: 'start' }));
+    } else if (!same) {
+      window.scrollTo(0, 0);
+    }
+  };
+
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!same && currentKey !== null && document.startViewTransition && !reduce) {
+    document.startViewTransition(apply);
+  } else {
+    apply();
+    if (!same && currentKey !== null) main.firstElementChild?.classList.add('route-in');
+  }
+}
+
+// static chrome (nav, footer) + document direction
+function applyLang() {
+  const root = document.documentElement;
+  root.lang = LANG;
+  root.dir = LANG === 'he' ? 'rtl' : 'ltr';
+  document.querySelectorAll('[data-t]').forEach(el => { el.textContent = t(el.dataset.t); });
+  $('#navName').textContent = t('name');
+  $('#skip').textContent = t('skip');
+  document.querySelectorAll('.lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === LANG)));
+}
+
+function setLang(next) {
+  if (next === LANG || (next === 'he' && !window.HE)) return;
+  LANG = next;
+  try { localStorage.setItem(LANG_KEY, next); } catch (_) {}
+  const y = scrollY;
+  const swap = () => { applyLang(); currentKey = null; render(); if (!parse().anchor) scrollTo(0, y); };
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (document.startViewTransition && !reduce) document.startViewTransition(swap); else swap();
+}
+document.querySelectorAll('.lang button').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+
+/* ==========================================================================
+   INTERACTIONS
+   ========================================================================== */
+
+let io;
+function wire() {
+  // reveal on scroll
+  io?.disconnect();
+  io = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    el.style.transitionDelay = `${Math.min(i % 6, 5) * 60}ms`;
+    io.observe(el);
+  });
+
+  // copy buttons
+  document.querySelectorAll('[data-copy]').forEach(b => b.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(b.dataset.copy); } catch (_) {}
+    const span = b.querySelector('span'); const old = span.textContent;
+    span.textContent = t('contact.copied'); setTimeout(() => (span.textContent = old), 1600);
+  }));
+
+  // lightbox triggers
+  document.querySelectorAll('[data-lb]').forEach(b => b.addEventListener('click', () => openLightbox(b.dataset.lb, +b.dataset.idx)));
+
+  // video covers: first tap starts playback, then the native controls take over
+  document.querySelectorAll('.play-cover').forEach(c => c.addEventListener('click', () => {
+    const v = c.parentElement.querySelector('video');
+    document.querySelectorAll('video').forEach(o => o !== v && o.pause());
+    c.remove(); v.play().catch(() => {});
+  }));
+
+  // hover preview on the work index (pointer devices only)
+  const peek = $('#peek');
+  peek.classList.remove('on');
+  if (matchMedia('(hover: hover)').matches) {
+    document.querySelectorAll('[data-peek]').forEach(row => {
+      const src = row.dataset.peek;
+      if (!src) return;
+      const wide = row.dataset.peekFrame === 'browser';
+      row.addEventListener('mouseenter', () => {
+        peek.innerHTML = wide
+          ? `<div class="laptop"><div class="lid"><div class="screen"><img src="${src}" alt=""></div></div><div class="base"></div></div>`
+          : `<div class="phone"><div class="screen"><img src="${src}" alt=""></div></div>`;
+        peek.classList.toggle('wide', wide);
+        peek.classList.add('on');
+      });
+      row.addEventListener('mouseleave', () => peek.classList.remove('on'));
+    });
+  }
+}
+
+// cursor-tracked glow, delegated once
+document.addEventListener('pointermove', e => {
+  const peek = $('#peek');
+  if (peek.classList.contains('on')) {
+    const off = peek.classList.contains('wide') ? 260 : 140;
+    peek.style.left = e.clientX + (document.dir === 'rtl' ? -off : off) + 'px';
+    peek.style.top = e.clientY + 'px';
+  }
+  const card = e.target.closest?.('.glow');
+  if (!card) return;
+  const r = card.getBoundingClientRect();
+  card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+  card.style.setProperty('--my', `${e.clientY - r.top}px`);
+}, { passive: true });
+
+// nav gets a surface once the page scrolls
+const navInner = $('#navInner');
+const onScroll = () => {
+  const on = scrollY > 24;
+  navInner.classList.toggle('bg-ink-900/70', on);
+  navInner.classList.toggle('backdrop-blur-xl', on);
+  navInner.classList.toggle('hairline', on);
+  navInner.classList.toggle('shadow-2xl', on);
+};
+addEventListener('scroll', onScroll, { passive: true });
+
+/* lightbox */
+const lb = { el: $('#lightbox'), img: $('#lbImg'), cap: $('#lbCap'), list: [], i: 0, last: null };
+function lbShow() {
+  const it = lb.list[lb.i];
+  lb.img.src = it.src; lb.img.alt = capOf(it);
+  lb.cap.textContent = `${capOf(it)} · ${lb.i + 1} / ${lb.list.length}`;
+}
+function openLightbox(slug, i) {
+  lb.list = PROJECTS.find(x => x.slug === slug).screens.items; lb.i = i; lb.last = document.activeElement;
+  lbShow();
+  lb.el.classList.remove('hidden'); lb.el.classList.add('flex');
+  document.body.style.overflow = 'hidden';
+  $('#lbClose').focus();
+}
+function closeLightbox() {
+  lb.el.classList.add('hidden'); lb.el.classList.remove('flex');
+  document.body.style.overflow = '';
+  lb.last?.focus();
+}
+const step = d => { lb.i = (lb.i + d + lb.list.length) % lb.list.length; lbShow(); };
+$('#lbClose').onclick = closeLightbox;
+$('#lbPrev').onclick = () => step(-1);
+$('#lbNext').onclick = () => step(1);
+lb.el.addEventListener('click', e => { if (e.target === lb.el) closeLightbox(); });
+lb.img.addEventListener('error', () => { lb.cap.textContent = `${t('lb.missing')} ${lb.list[lb.i].src}`; });
+addEventListener('keydown', e => {
+  if (lb.el.classList.contains('hidden')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowRight') step(1);
+  if (e.key === 'ArrowLeft') step(-1);
+});
+
+$('#year').textContent = new Date().getFullYear();
+addEventListener('hashchange', render);
+applyLang();
+render();
+onScroll();
+</script>
+</body>
+</html>
