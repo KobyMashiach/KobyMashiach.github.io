@@ -293,7 +293,7 @@ const PROJECTS = [
   {
     slug: 'leadweaver',
     name: 'LeadWeaver AI',
-    icon: null,
+    icon: 'assets/icons/leadweaver.svg',
     monogram: 'LW',
     kind: 'Own product · B2B SaaS',
     year: '2026',
@@ -613,6 +613,7 @@ const PROJECTS = [
     slug: 'apartment-hunter',
     name: 'Apartment Hunter',
     icon: null,
+    emoji: '🏠',
     monogram: 'AH',
     kind: 'Side project · Automation',
     year: '2026',
@@ -839,6 +840,7 @@ const icons = {
 
 function projectIcon(p, size = 'h-12 w-12', radius = 'rounded-[14px]') {
   if (p.icon) return `<img src="${p.icon}" alt="" class="${size} ${radius} object-contain bg-white/[.03] p-1 border hairline" loading="lazy">`;
+  if (p.emoji) return `<span class="${size} ${radius} grid place-items-center border hairline bg-white/[.03] ${size.includes('h-16') ? 'text-[34px]' : 'text-[24px]'} leading-none" aria-hidden="true">${p.emoji}</span>`;
   return `<span class="${size} ${radius} grid place-items-center border hairline bg-gradient-to-br from-ink-700 to-ink-900 font-mono text-[13px] tracking-wider text-neon-cyan" dir="ltr">${esc(p.monogram || p.name[0])}</span>`;
 }
 
