@@ -242,6 +242,7 @@
       <div class="flex items-center gap-5 text-[13px] text-fog-400">
         <a class="hover:text-white" href="mailto:koby9779@gmail.com" data-t="contact.email">Email</a>
         <a class="hover:text-white" href="https://github.com/KobyMashiach" target="_blank" rel="noopener">GitHub</a>
+        <a class="hover:text-white" href="assets/cv/Koby-Mashiach-CV.pdf" target="_blank" rel="noopener" data-t="cv.short">CV</a>
         <a class="hover:text-white ltr" href="tel:+972508247743">+972 50-824-7743</a>
       </div>
     </div>
@@ -287,6 +288,7 @@ const ME = {
   phone: '050-824-7743',
   phoneIntl: '+972508247743',
   github: 'https://github.com/KobyMashiach',
+  cv: 'assets/cv/Koby-Mashiach-CV.pdf',
 };
 
 const PROJECTS = [
@@ -787,6 +789,7 @@ const UI = {
     'contact.label': 'Contact', 'contact.title': `Looking for my next<br>${sg('mobile role.')}`,
     'contact.email': 'Email', 'contact.copy': 'Copy address', 'contact.copied': 'Copied', 'contact.phone': 'Phone', 'contact.code': 'Code', 'contact.open': 'Open to senior mobile roles',
     'footer.line': 'Koby Mashiach · Designed and built by hand.',
+    'cv.view': 'View CV', 'cv.download': 'Download CV (PDF)', 'cv.short': 'CV',
     'p.all': 'All work', 'p.role': 'Role', 'p.platforms': 'Platforms', 'p.status': 'Status', 'p.timeline': 'Timeline', 'p.part': 'My part',
     'p.screens': 'Screens', 'p.screensTitle': `The product, ${s('in hand.')}`, 'p.scroll': 'Scroll sideways · tap to enlarge',
     'p.restrictedTitle': 'Screenshots withheld',
@@ -830,6 +833,7 @@ const UI = {
     'contact.label': 'יצירת קשר', 'contact.title': `מחפש את התפקיד<br>${sg('הבא שלי במובייל.')}`,
     'contact.email': 'מייל', 'contact.copy': 'העתקת הכתובת', 'contact.copied': 'הועתק', 'contact.phone': 'טלפון', 'contact.code': 'קוד', 'contact.open': 'פתוח להצעות לתפקידי מובייל בכירים',
     'footer.line': 'קובי משיח · עוצב ונבנה בעבודת יד.',
+    'cv.view': 'קורות חיים', 'cv.download': 'הורדת קורות חיים (PDF)', 'cv.short': 'קורות חיים',
     'p.all': 'כל העבודות', 'p.role': 'תפקיד', 'p.platforms': 'פלטפורמות', 'p.status': 'סטטוס', 'p.timeline': 'זמנים', 'p.part': 'החלק שלי',
     'p.screens': 'מסכים', 'p.screensTitle': `המוצר, ${s('ביד.')}`, 'p.scroll': 'גללו הצידה · הקישו להגדלה',
     'p.restrictedTitle': 'צילומי מסך לא מפורסמים',
@@ -897,6 +901,8 @@ const icons = {
   lock: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>',
   clock: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
   shield: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/><path d="M9.5 12l1.8 1.8L15 10"/></svg>',
+  doc: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>',
+  download: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>',
   copy: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>',
   image: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" class="text-fog-500"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>',
   playBig: '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>',
@@ -1014,6 +1020,7 @@ function viewHome() {
         <p class="reveal mt-8 max-w-[560px] text-[17px] leading-relaxed text-fog-300">${esc(t('hero.p'))}</p>
         <div class="reveal mt-10 flex flex-wrap items-center gap-3">
           <a href="#/work" class="btn btn-primary">${t('hero.cta')} ${icons.arrow}</a>
+          <a href="${ME.cv}" target="_blank" rel="noopener" class="btn btn-ghost">${icons.doc}${t('cv.view')}</a>
           <a href="mailto:${ME.email}" class="btn btn-ghost ltr">${esc(ME.email)}</a>
         </div>
         <dl class="reveal mt-16 grid max-w-[620px] grid-cols-2 gap-x-8 gap-y-8 sm:grid-cols-4">
@@ -1127,6 +1134,10 @@ function viewContactBlock() {
           <a href="${ME.github}" target="_blank" rel="noopener" class="mt-3 flex items-center gap-2 text-[20px] tracking-tight hover:text-neon-cyan">${icons.github} <span class="ltr">KobyMashiach</span></a>
           <span class="mt-5 inline-flex items-center gap-2 text-[13px] text-fog-400"><span class="h-1.5 w-1.5 rounded-full bg-neon-cyan pulse-dot"></span>${t('contact.open')}</span>
         </div>
+      </div>
+      <div class="reveal mt-8 flex flex-wrap items-center gap-3">
+        <a href="${ME.cv}" target="_blank" rel="noopener" class="btn btn-primary">${icons.doc}${t('cv.view')}</a>
+        <a href="${ME.cv}" download="Koby-Mashiach-CV.pdf" class="btn btn-ghost">${icons.download}${t('cv.download')}</a>
       </div>
     </div>
   </section>`;
