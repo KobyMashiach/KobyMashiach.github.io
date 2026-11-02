@@ -366,7 +366,7 @@ const PROJECTS = [
     slug: 'easy-plate',
     name: 'Easy Plate AI',
     icon: 'assets/icons/easy-plate.png',
-    kind: 'Own product · Live on Google Play',
+    kind: 'Own product · Live on App Store & Google Play',
     year: '2025 — now',
     tagline: 'An AI kitchen app that turns a photo, a link or a TikTok into a recipe, then plans the week and writes the grocery list.',
     summary: [
@@ -376,10 +376,10 @@ const PROJECTS = [
     role: 'Founder · product, design, architecture & engineering',
     contribution: ['Product definition & specs', 'UI / UX design', 'Architecture', 'Flutter & native development', 'Backend & AI', 'Payments & analytics', 'Store listing & marketing site'],
     platforms: ['iOS', 'Android', 'Web', 'Home-screen widgets'],
-    status: 'Live on Google Play · App Store coming soon',
+    status: 'Live on the App Store and Google Play',
     links: {
+      appStore: 'https://apps.apple.com/us/app/easy-plate-ai/id6809243199',
       play: 'https://play.google.com/store/apps/details?id=com.KHEasyDev.easy_plate',
-      soon: 'App Store — coming soon',
       web: 'https://aieasyplate.app',
       github: 'https://github.com/KobyMashiach/easy_plate',
     },
@@ -832,7 +832,7 @@ const UI = {
     'hero.p': `${ME.years} years of Flutter and native mobile work — from offline-first apps that Israel Electric’s field crews rely on, to consumer products I specify, design, build, monetise and ship on my own.`,
     'hero.cta': 'See the work',
     'stat.years': 'years in mobile', 'stat.products': 'products in this portfolio', 'stat.surfaces': 'surfaces: phone, tablet, watch, web', 'stat.langs': 'UI languages, RTL native',
-    'hero.shipping': 'Now shipping', 'hero.shippingLine': 'Easy Plate AI · Google Play',
+    'hero.shipping': 'Now shipping', 'hero.shippingLine': 'Easy Plate AI · App Store & Google Play',
     'work.label': 'Selected work', 'work.title': `Eight products, from the electric grid ${m('to the dinner table.')}`,
     'flag.label': 'Flagship · end-to-end', 'flag.title': `One engineer.<br>${sg('A whole product.')}`,
     'flag.points': ['Flutter app with native widgets, share extension and a wake-word assistant', 'Serverless backend with AI proxy, quotas and billing webhooks', 'Web app, SEO site in five languages and an admin console', 'Subscriptions, ads and remote feature flags in production'],
@@ -876,7 +876,7 @@ const UI = {
     'hero.p': `${ME.years} שנים של פיתוח Flutter ו-Native — מאפליקציות offline-first שצוותי השטח של חברת החשמל סומכים עליהן, ועד מוצרים צרכניים שאני מאפיין, מעצב, בונה ומוציא לחנויות בעצמי.`,
     'hero.cta': 'לעבודות',
     'stat.years': 'שנים במובייל', 'stat.products': 'מוצרים בתיק העבודות', 'stat.surfaces': 'משטחים: טלפון, טאבלט, שעון, ווב', 'stat.langs': 'שפות ממשק, כולל RTL',
-    'hero.shipping': 'באוויר עכשיו', 'hero.shippingLine': 'Easy Plate AI · Google Play',
+    'hero.shipping': 'באוויר עכשיו', 'hero.shippingLine': 'Easy Plate AI · App Store & Google Play',
     'work.label': 'עבודות נבחרות', 'work.title': `שמונה מוצרים, מרשת החשמל ${m('ועד שולחן האוכל.')}`,
     'flag.label': 'מוצר הדגל · מקצה לקצה', 'flag.title': `מפתח אחד.<br>${sg('מוצר שלם.')}`,
     'flag.points': ['אפליקציית Flutter עם ווידג׳טים נייטיב, Share Extension ועוזר עם מילת הפעלה', 'Backend ללא שרתים עם פרוקסי AI, מכסות ו-webhooks לחיוב', 'אפליקציית ווב, אתר SEO בחמש שפות וקונסולת ניהול', 'מנויים, מודעות ופיצ׳ר פלאגים מרחוק בפרודקשן'],
@@ -1129,6 +1129,7 @@ function viewHome() {
         </ul>
         <div class="reveal mt-10 flex flex-wrap gap-3">
           <a href="#/work/${flagship.slug}" class="btn btn-primary">${t('flag.cta')} ${icons.arrow}</a>
+          ${flagship.links.appStore ? `<a class="btn btn-ghost" href="${flagship.links.appStore}" target="_blank" rel="noopener">${icons.apple}App Store</a>` : ''}
           ${flagship.links.play ? `<a class="btn btn-ghost" href="${flagship.links.play}" target="_blank" rel="noopener">${icons.play}Google Play</a>` : ''}
           ${flagship.links.web ? `<a class="btn btn-ghost" href="${flagship.links.web}" target="_blank" rel="noopener">${icons.globe}${t('btn.web')}</a>` : ''}
         </div>

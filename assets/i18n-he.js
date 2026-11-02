@@ -3,7 +3,7 @@
 window.HE = {
   projects: {
     'easy-plate': {
-      kind: 'מוצר שלי · זמין ב-Google Play',
+      kind: 'מוצר שלי · זמין ב-App Store וב-Google Play',
       year: '2025 — היום',
       tagline: 'אפליקציית מטבח מבוססת AI: הופכת תמונה, קישור או סרטון TikTok למתכון, מתכננת את השבוע וכותבת את רשימת הקניות.',
       summary: [
@@ -13,8 +13,7 @@ window.HE = {
       role: 'מייסד · מוצר, עיצוב, ארכיטקטורה ופיתוח',
       contribution: ['הגדרת מוצר ואפיון', 'עיצוב UI / UX', 'ארכיטקטורה', 'פיתוח Flutter ו-Native', 'Backend ו-AI', 'תשלומים ואנליטיקה', 'דף בחנויות ואתר שיווקי'],
       platforms: ['iOS', 'Android', 'Web', 'ווידג׳טים למסך הבית'],
-      status: 'באוויר ב-Google Play · בקרוב ב-App Store',
-      links: { soon: 'App Store — בקרוב' },
+      status: 'באוויר ב-App Store וב-Google Play',
       metrics: [
         { v: '5', k: 'שפות, שתיים מהן RTL' },
         { v: '~30', k: 'Cloud Functions מאחורי האפליקציה' },
